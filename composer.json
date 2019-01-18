@@ -1,0 +1,16 @@
+{
+    "name": "virgile/projet3",
+    "description": "projet blog",
+    "authors": [
+        {
+            "name": "tuxultima",
+            "email": "bbkoaladu28@gmail.com"
+        }
+    ],
+    "autoload":{
+    	"psr-4":{
+    		"App\\": "src/"
+    	}
+    },
+    "require": {}
+}
