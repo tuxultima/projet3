@@ -5,6 +5,10 @@ session_start();
 require('vendor/autoload.php');
 
 use App\Controller\Home\HomeController;
+use App\Controller\Newsletters\NewslettersController;
+use App\Controller\AllChapters\AllChaptersController;
+use App\Controller\About\AboutController;
+use App\Controller\Contact\ContactController;
 
 $url = "";
 
@@ -18,21 +22,21 @@ if ($url === 'accueil') {
 }
 
 elseif ($url === 'roman') {
-	$novel = new HomeController();
-	$novel->novel();
+	$allchapters = new AllChaptersController();
+	$allchapters->allchapters();
 }
 
 elseif ($url === 'quisuisje') {
-	$whoami = new HomeController();
-	$whoami->whoami();
+	$about = new AboutController();
+	$about->about();
 }
 
 elseif ($url === 'newsletters') {
-	$newsletters = new HomeController();
+	$newsletters = new NewslettersController();
 	$newsletters->newsletters();
 }
 
 elseif ($url === 'contact') {
-	$contact = new HomeController();
+	$contact = new ContactController();
 	$contact->contact();
 }

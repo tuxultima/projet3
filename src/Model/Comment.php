@@ -9,6 +9,9 @@ class Comment
 	private $nickname;
 	private $comment;
 	private $dateUpload;
+  private $chapter_id;
+  private $reported;
+  private $moderate;
 
 	public function __construct($values = null)
   {
@@ -57,7 +60,7 @@ class Comment
 
   public function getComment(): ?string
   {
-  	return $this->nickname;
+  	return $this->comment;
   }
 
   public function setComment($comment): void
@@ -73,5 +76,35 @@ class Comment
   public function setDateUpload($dateUpload)
   {
   	$this->dateUpload = $dateUpload;
+  }
+
+  public function getChapter_Id()
+  {
+    return $this->chapter_id;
+  }
+
+  public function setChapter_Id($chapter_id)
+  {
+    $this->chapter_id = $chapter_id;
+  }
+
+  public function getReported()
+  {
+    return $this->reported;
+  }
+
+  public function setReported($reported)
+  {
+    $this->reported = $reported;
+  }
+
+  public function getModerate()
+  {
+    return $this->moderate;
+  }
+
+  public function setModerate($moderate)
+  {
+    $this->moderate = $moderate;
   }
 }
