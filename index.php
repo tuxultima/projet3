@@ -9,6 +9,7 @@ use App\Controller\Newsletters\NewslettersController;
 use App\Controller\AllChapters\AllChaptersController;
 use App\Controller\About\AboutController;
 use App\Controller\Contact\ContactController;
+use App\Controller\Chapter\ChapterController;
 
 $url = "";
 
@@ -40,3 +41,9 @@ elseif ($url === 'contact') {
 	$contact = new ContactController();
 	$contact->contact();
 }
+
+elseif ($url === 'chapitre') {
+	$thechapter = new ChapterController();
+	$thechapter->thechapter();
+}
+

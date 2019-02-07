@@ -6,12 +6,13 @@ ob_start();
 
 
 
+
 foreach ($results as $data)
 {
 ?>
 <div class="chapter">
 	<p>
-		<?= $data->getTitle(); ?>
+		<a href="chapitre?id=<?= $data->getId(); ?>"><?= $data->getTitle(); ?></a>
 		crée le <?= $data->getDateUpload(); ?>
 	</p>
 

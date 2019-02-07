@@ -13,11 +13,26 @@ class ChapterManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	public function test()
+	public function getChapterOne($postId)
 	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter ORDER BY dateUpload');
+		$req = $this->db->query('SELECT *, * FROM chapter c INNER JOIN comment co ON c.id = co.chapted_id WHERE c.id,co.chapter_id = ?');
 		$data = $req->fetchAll(PDO::FETCH_ASSOC);
-		return $data;
+		$req->execute(array($postId));
+		$chapterOne = [];
+		$objChapter = new Chapter($data);
+		$chapterOne[] = $objChapter;
+		return $chapterOne;
+	}
+
+	public function getChapterOnly($postId)
+	{
+		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter where id = ?');
+		$data = $req->fetchAll(PDO::FETCH_ASSOC);
+		$req->execute(array($postId));
+		$chapterOnly = [];
+		$objChapter = new Chapter($data);
+		$chapterOnly[] = $objChapter;
+		return $chapterOnly;
 	}
 
 	public function getChapters()
