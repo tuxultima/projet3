@@ -13,15 +13,30 @@ class ChapterManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	public function getChapterOne($postId)
+	public function getChapterOne(Chapter $chapter)
 	{
-		$req = $this->db->query('SELECT *, * FROM chapter c INNER JOIN comment co ON c.id = co.chapted_id WHERE c.id,co.chapter_id = ?');
+		$req = $this->db->prepare('SELECT c.id, c.title, c.content, c.dateUpload, co.id AS com_id, co.nickname, co.comment, co.dateUpload AS com_date, co.chapter_id, co.reported, co.moderate FROM chapter c LEFT JOIN comment co ON co.chapter_id = c.id WHERE c.id = ?');
+		$req->execute(array($chapter->getId()));
 		$data = $req->fetchAll(PDO::FETCH_ASSOC);
-		$req->execute(array($postId));
-		$chapterOne = [];
-		$objChapter = new Chapter($data);
-		$chapterOne[] = $objChapter;
-		return $chapterOne;
+		$comments = [];
+		foreach ($data as $value) {
+			$chapter->setTitle($value['title']);
+			$chapter->setContent($value['content']);
+			$chapter->setDateUpload($value['dateUpload']);
+			if ($value['com_id']) {
+				$comment = new Comment();
+				$comment->setId($value['com_id']);
+				$comment->setNickname($value['nickname']);
+				$comment->setComment($value['comment']);
+				$comment->setDateUpload($value['com_date']);
+				$comment->setReported($value['reported']);
+				$comment->setModerate($value['moderate']);
+				$comments[] = $comment;
+			}
+
+		}
+		$chapter->setComments($comments);
+		return $chapter;
 	}
 
 	public function getChapterOnly($postId)

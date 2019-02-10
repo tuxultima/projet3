@@ -10,6 +10,7 @@ use App\Controller\AllChapters\AllChaptersController;
 use App\Controller\About\AboutController;
 use App\Controller\Contact\ContactController;
 use App\Controller\Chapter\ChapterController;
+use App\Model\Chapter;
 
 $url = "";
 
@@ -43,7 +44,10 @@ elseif ($url === 'contact') {
 }
 
 elseif ($url === 'chapitre') {
+	if (isset($_GET['id']) && $_GET['id'] > 0) {
+	$chapter = new Chapter(['id'=>$_GET['id']]);
 	$thechapter = new ChapterController();
-	$thechapter->thechapter();
+	$thechapter->thechapter($chapter);
+	}
 }
 

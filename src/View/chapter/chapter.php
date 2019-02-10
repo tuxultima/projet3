@@ -6,23 +6,23 @@ ob_start();
 
 <div class="chapter">
 	<p>
-		<?= $results->getTitle(); ?>
-		crée le <?= $results->getDateUpload(); ?>
+		<?= $result->getTitle(); ?>
+		crée le <?= $result->getDateUpload(); ?>
 	</p>
 
 	<p>
-		<?= $results->getContent(); ?>
+		<?= $result->getContent(); ?>
 	</p>
 </div>
 
 <div class="comment">
 	<p>commentaires</p>
 	<?php
-	while ($results2 = $results2->fetch())
+	foreach ($result->getComments() as $data)
 	{
 		?>
-		<p> <?= $results2->getNickname(); ?> le <?= results2->getDateUpload(); ?> </p>
-		<p> <?= $results2->getComment(); ?> </p>
+		<p> <?= $data->getNickname(); ?> le <?= $data->getDateUpload(); ?> </p>
+		<p> <?= $data->getComment(); ?> </p>
 		<?php
 	}
 	?>
