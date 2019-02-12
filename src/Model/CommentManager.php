@@ -23,4 +23,11 @@ class CommentManager extends DbManager
 		$comment[] = $objComment;
 		return $comment;
 	}
+
+	public function report(Comment $commentId)
+	{
+		$req = $this->db->prepare('UPDATE comment SET reported = 1 WHERE id = ?');
+		$req->execute(array($commentId->getId()));
+		return $commentId;
+	}
 }

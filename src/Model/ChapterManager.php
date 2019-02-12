@@ -13,7 +13,7 @@ class ChapterManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	public function getChapterOne(Chapter $chapter)
+	public function getChapterOnly(Chapter $chapter)
 	{
 		$req = $this->db->prepare('SELECT c.id, c.title, c.content, c.dateUpload, co.id AS com_id, co.nickname, co.comment, co.dateUpload AS com_date, co.chapter_id, co.reported, co.moderate FROM chapter c LEFT JOIN comment co ON co.chapter_id = c.id WHERE c.id = ?');
 		$req->execute(array($chapter->getId()));
@@ -39,7 +39,7 @@ class ChapterManager extends DbManager
 		return $chapter;
 	}
 
-	public function getChapterOnly($postId)
+	public function getChapterNan($postId)
 	{
 		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter where id = ?');
 		$data = $req->fetchAll(PDO::FETCH_ASSOC);

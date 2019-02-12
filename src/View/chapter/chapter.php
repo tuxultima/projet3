@@ -23,6 +23,7 @@ ob_start();
 		?>
 		<p> <?= $data->getNickname(); ?> le <?= $data->getDateUpload(); ?> </p>
 		<p> <?= $data->getComment(); ?> </p>
+		<p> <a href="report&id=<?= $data->getId(); ?>">report</a></p>
 		<?php
 	}
 	?>

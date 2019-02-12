@@ -9,19 +9,10 @@ use App\Model\Chapter;
 
 class ChapterController 
 {
-	
 	public function thechapter(Chapter $chapter)
 	{
-		
-			
-		
-		$chapterone = new ChapterManager();
-		$result = $chapterone->getChapterOne($chapter);
-		
-		
-		require('src/View/chapter/chapter.php');
-		
-		
-		
+		$chapteronly = new ChapterManager();
+		$result = $chapteronly->getChapterOnly($chapter);
+		require('src/View/chapter/chapter.php');	
 	}
-} 
+}

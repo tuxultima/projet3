@@ -10,7 +10,10 @@ use App\Controller\AllChapters\AllChaptersController;
 use App\Controller\About\AboutController;
 use App\Controller\Contact\ContactController;
 use App\Controller\Chapter\ChapterController;
+use App\Controller\Report\ReportController;
+use App\Controller\Connection\ConnectionController;
 use App\Model\Chapter;
+use App\Model\Comment;
 
 $url = "";
 
@@ -51,3 +54,15 @@ elseif ($url === 'chapitre') {
 	}
 }
 
+elseif ($url == 'report') {
+	if (isset($_GET['id']) && $_GET['id'] > 0) {
+	$reported = new Comment(['id'=>$_GET['id']]);
+	$report = new ReportController();
+	$report->report($reported);
+	}
+}
+
+elseif ($url == 'connexion') {
+	$connection = new ConnectionController();
+	$connection->connection();
+}
