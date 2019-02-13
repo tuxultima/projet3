@@ -12,6 +12,7 @@ use App\Controller\Contact\ContactController;
 use App\Controller\Chapter\ChapterController;
 use App\Controller\Report\ReportController;
 use App\Controller\Connection\ConnectionController;
+use App\Controller\TryConnnection\TryConnnectionController;
 use App\Model\Chapter;
 use App\Model\Comment;
 
@@ -65,4 +66,14 @@ elseif ($url == 'report') {
 elseif ($url == 'connexion') {
 	$connection = new ConnectionController();
 	$connection->connection();
+}
+
+elseif ($url == 'tryconnection') {
+	$tryconnection = new TryConnnectionController();
+	$tryconnection->tryconnection();
+}
+
+elseif ($url == 'administration') {
+	$admin = new AdminController();
+	$admin->administration();
 }

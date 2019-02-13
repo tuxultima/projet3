@@ -49,11 +49,23 @@ class User
  		$this->id = $id;
  	}
 
+ 	public function getNickname(): ?string
+ 	{
+ 		return $this->nickname;
+ 	}
 
+ 	public function setNickname($nickname): void
+ 	{
+ 		$this->nickname = $nickname;
+ 	}
 
+ 	public function getPassword(): ?string
+ 	{
+ 		return $this->password;
+ 	}
 
-
-
-
-
+ 	public function setPassword($password): void
+ 	{
+ 		$this->password = $password;
+ 	}
 }

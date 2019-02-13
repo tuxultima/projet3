@@ -4,7 +4,7 @@ namespace App\Controller\Connection;
 
 class ConnectionController
 {
-	public function Connection()
+	public function connection()
 	{
 		require('src/View/connection/connection.php');
 	}
