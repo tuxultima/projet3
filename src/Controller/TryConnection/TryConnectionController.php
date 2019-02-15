@@ -5,20 +5,25 @@ namespace App\Controller\TryConnection;
 use App\Model\UserManager;
 use App\Model\User;
 
-class TryConnection
+class TryConnectionController
 {
-	public function tryconnection()
+	public function tryconnection($nickname)
 	{
 		$tryconnection = new UserManager();
-		if ($tryconnection->getNickname() = $_POST['nickname.s'] && $tryconnection->getPassword() = $_POST['password.s']) {
+		$result = $tryconnection->getConnection($nickname);
+		$truepseudo = $result->getNickname();
+		$truepassword = $result->getPassword();
+		$pseudo = $_POST['nickname'];
+		$pass = $_POST['password'];
+		if ($truepseudo = $pseudo && $truepassword = $pass) {
 			session_start();
-			$SESSION['id'] = $tryconnection->getId();
-			$SESSION['nickname'] = $tryconnection->getNickname();
+			$SESSION['id'] = $result->getId();
+			$SESSION['nickname'] = $result->getNickname();
 			header('Location: administration');
 		}
-		else()
+		else
 		{
-			header('Location: connexion')
+			header('Location: connexion');
 		}
 		require('src/View/tryconnection/tryconnection.php');
 	}

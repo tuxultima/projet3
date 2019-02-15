@@ -12,7 +12,8 @@ use App\Controller\Contact\ContactController;
 use App\Controller\Chapter\ChapterController;
 use App\Controller\Report\ReportController;
 use App\Controller\Connection\ConnectionController;
-use App\Controller\TryConnnection\TryConnnectionController;
+use App\Controller\TryConnection\TryConnectionController;
+use App\Controller\Admin\AdminController;
 use App\Model\Chapter;
 use App\Model\Comment;
 
@@ -56,10 +57,10 @@ elseif ($url === 'chapitre') {
 }
 
 elseif ($url == 'report') {
-	if (isset($_GET['id']) && $_GET['id'] > 0) {
+	if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['chapter-id']) {
 	$reported = new Comment(['id'=>$_GET['id']]);
 	$report = new ReportController();
-	$report->report($reported);
+	$report->report($reported, $_GET['chapter-id']);
 	}
 }
 
@@ -69,11 +70,11 @@ elseif ($url == 'connexion') {
 }
 
 elseif ($url == 'tryconnection') {
-	$tryconnection = new TryConnnectionController();
-	$tryconnection->tryconnection();
+	$tryconnection = new TryConnectionController();
+	$tryconnection->tryconnection($_POST['nickname']);
 }
 
 elseif ($url == 'administration') {
 	$admin = new AdminController();
-	$admin->administration();
+	$admin->admin();
 }

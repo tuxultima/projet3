@@ -8,10 +8,10 @@ use App\Model\Comment;
 
 class ReportController
 {
-	public function report(Comment $commentId)
+	public function report(Comment $commentId, $chapterId)
 	{
 		$reported = new CommentManager();
 		$result = $reported->report($commentId);
-		require ('src/View/report/report.php');
+		header('Location: chapitre&id=' . $chapterId);
 	}
 }
