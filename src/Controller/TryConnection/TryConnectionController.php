@@ -15,12 +15,14 @@ class TryConnectionController
 		$truepassword = $result->getPassword();
 		$pseudo = $_POST['nickname'];
 		$pass = $_POST['password'];
-		if ($truepseudo = $pseudo && $truepassword = $pass) {
-			session_start();
-			$SESSION['id'] = $result->getId();
-			$SESSION['nickname'] = $result->getNickname();
-			header('Location: administration');
+		$pass = hash('sha512', $pass);
+		
+		if ($truepseudo == $pseudo && $truepassword == $pass) {
+			$_SESSION['id'] = $result->getId();
+			$_SESSION['nickname'] = $result->getNickname();
+			header('Location:administration');
 		}
+
 		else
 		{
 			header('Location: connexion');

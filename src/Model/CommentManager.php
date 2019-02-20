@@ -30,4 +30,30 @@ class CommentManager extends DbManager
 		$req->execute(array($commentId->getId()));
 		return $commentId;
 	}
+
+	public function getreported()
+	{
+		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE reported = 1 ORDER BY dateUpload');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$comments = [];
+		foreach ($result as $data) 
+		{
+			$objComments = new Comment($data);
+			$comments[] = $objComments;
+		}
+		return $comments;
+	}
+
+	public function getcomment()
+	{
+		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment ORDER BY dateUpload');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$comments = [];
+		foreach ($result as $data) 
+		{
+			$objComments = new Comment($data);
+			$comments[] = $objComments;
+		}
+		return $comments;
+	}
 }

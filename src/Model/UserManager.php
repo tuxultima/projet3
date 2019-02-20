@@ -19,13 +19,35 @@ class UserManager extends DbManager
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user WHERE nickname = ?');
 		$req->execute([$nickname]);
 		$result = $req->fetch(PDO::FETCH_ASSOC);
-		$user = [];
-		foreach ($result as $data) 
-		{
-			$objUser = new User($data);
-			$user[] = $objUser; 
+		$user = new User($result);
+		return $user;
+	}
+
+	public function getConnect()
+	{
+		if (isset($_SESSION['Admin']) && isset($_SESSION['Admin']['nickname']) && isset($_SESSION['Admin']['password'])) {
+			extract($_SESSION['Admin']);
+			$req = $this->db->prepare('SELECT id, nickname, password FROM user WHERE nickname = $nickname AND password = $password');
+			$sql = mysql_query($req) or die(mysql_error());
+			if (mysql_num_rows($sql)>0) {
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
-		var_dump($user);die;
+		else{
+			return false;
+		}
+		
+	}
+
+	public function getConnected()
+	{
+		$req = $this->db->prepare('SELECT id, nickname, password FROM user ');
+		$req->execute();
+		$result = $req->fetch(PDO::FETCH_ASSOC);
+		$user = new User($result);
 		return $user;
 	}
 }

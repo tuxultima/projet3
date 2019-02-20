@@ -14,6 +14,10 @@ use App\Controller\Report\ReportController;
 use App\Controller\Connection\ConnectionController;
 use App\Controller\TryConnection\TryConnectionController;
 use App\Controller\Admin\AdminController;
+use App\Controller\NewChapter\NewChapterController;
+use App\Controller\ChaptersAdmin\ChaptersAdminController;
+use App\Controller\CommentsAdmin\CommentsAdminController;
+use App\Controller\Moderate\ModerateController;
 use App\Model\Chapter;
 use App\Model\Comment;
 
@@ -77,4 +81,24 @@ elseif ($url == 'tryconnection') {
 elseif ($url == 'administration') {
 	$admin = new AdminController();
 	$admin->admin();
+}
+
+elseif ($url == 'nouveauchapitre') {
+	$newchapter = new NewChapterController();
+	$newchapter->newchapter();
+}
+
+elseif ($url == 'chapitresadmin') {
+	$chaptersadmin = new ChaptersAdminController();
+	$chaptersadmin->chaptersadmin();
+}
+
+elseif ($url == 'commentairesadmin') {
+	$commentsadmin = new CommentsAdminController();
+	$commentsadmin->commentsadmin();
+}
+
+elseif ($url == 'modération') {
+	$moderate = new ModerateController();
+	$moderate->moderate();
 }
