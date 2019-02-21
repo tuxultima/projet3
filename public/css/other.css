@@ -8,3 +8,24 @@
 	color: #cccecf;
   text-decoration: underline;
 }
+
+.b {
+	color: #80b7ff;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.b:hover {
+	color: #bfd4ff;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.chapter {
+	background-color: #4c4c4d;
+}
+
+.darkmode {
+	background-color: #303030;
+}
+

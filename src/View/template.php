@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../../projet3/public/css/other.css">
 	<title>projet 3</title>
 </head>
-<body>
+<body class="darkmode">
 	<div class="container">
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       	<div class="container-fluid">
@@ -32,7 +32,20 @@
 				</div>
 
 				<div  class="col-md-3 nav-item text-right">
+					<?php
+					if (isset($_SESSION['id']) == NULL) {
+					?>
 					<a class="a" href="connexion">Connexion</a>
+					<?php
+					}
+					else
+					{
+					?>
+					<a class="a" href="administration">Accueil administration</a>
+					<?php
+					}
+					?>
+
 				</div>
 			</div>
 		</div>

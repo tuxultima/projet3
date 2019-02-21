@@ -18,6 +18,7 @@ use App\Controller\NewChapter\NewChapterController;
 use App\Controller\ChaptersAdmin\ChaptersAdminController;
 use App\Controller\CommentsAdmin\CommentsAdminController;
 use App\Controller\Moderate\ModerateController;
+use App\Controller\Notice\NoticeController;
 use App\Model\Chapter;
 use App\Model\Comment;
 
@@ -101,4 +102,9 @@ elseif ($url == 'commentairesadmin') {
 elseif ($url == 'modération') {
 	$moderate = new ModerateController();
 	$moderate->moderate();
+}
+
+elseif ($url == 'mentions') {
+	$notice = new NoticeController();
+	$notice->notice();
 }

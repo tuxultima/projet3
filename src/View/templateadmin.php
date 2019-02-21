@@ -26,7 +26,7 @@
 		<div class="container-fluid text-center text-md-left ">
 			<div class="row">
 				<div  class="col-md-9">
-					<a class="a" href="accueil">Accueil site</a>
+					<a class="b" href="accueil">Accueil site</a>
 				</div>
 			</div>
 		</div>
