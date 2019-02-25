@@ -7,7 +7,7 @@ use App\Model\User;
 
 class TryConnectionController
 {
-	public function tryconnection($nickname)
+	/*public function tryconnection($nickname)
 	{
 		$tryconnection = new UserManager();
 		$result = $tryconnection->getConnection($nickname);
@@ -28,5 +28,23 @@ class TryConnectionController
 			header('Location: connexion');
 		}
 		require('src/View/tryconnection/tryconnection.php');
+	}*/
+
+	public function tryconnection(User $user)
+	{
+		
+
+		$uManager = new UserManager();
+		$check = $uManager->getConnection($user);
+		if ($check['nickname'] != null && $user->getNickname() == $check['nickname']) {
+			if (password_verify($user->getPassword(),$check['password'])) {
+				$_SESSION['id'] = $check['id'];
+				$_SESSION['nickname'] = $check['nickname'];
+				require ('src/View/admin/admin.php');
+			}
+		}
+		else {
+			header('Location: connexion');
+		}
 	}
 }

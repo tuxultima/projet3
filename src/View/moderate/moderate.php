@@ -10,15 +10,15 @@ ob_start();
 foreach ($results as $data)
 {
 ?>
-<div class="reported">
+<div class="reported rounded text-black mt-3 mb-3 bg-warning">
 	<p>
 		<p><?= $data->getNickname(); ?></p>
-		crée le <?= $data->getDateUpload(); ?>
 	</p>
 
 	<p>
 		<?= $data->getComment(); ?>
 	</p>
+	<em>crée le <?= $data->getDateUpload(); ?></em>
 </div>
 <?php
 }

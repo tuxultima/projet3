@@ -52,7 +52,7 @@ class ChapterManager extends DbManager
 
 	public function getChapters()
 	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter ORDER BY dateUpload');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y à %Hh%imin%ss") AS dateUpload FROM chapter ORDER BY dateUpload');
 		$results = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters = [];
 		foreach ($results as $data) 

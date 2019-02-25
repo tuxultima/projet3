@@ -2,7 +2,7 @@
 ob_start();
 ?>
 
-<h1 class="text-white">acceuil</h1>
+<h1 class="text-white">accueil</h1>
 
 
 

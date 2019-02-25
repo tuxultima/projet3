@@ -19,6 +19,7 @@ use App\Controller\ChaptersAdmin\ChaptersAdminController;
 use App\Controller\CommentsAdmin\CommentsAdminController;
 use App\Controller\Moderate\ModerateController;
 use App\Controller\Notice\NoticeController;
+use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
 
@@ -75,8 +76,13 @@ elseif ($url == 'connexion') {
 }
 
 elseif ($url == 'tryconnection') {
-	$tryconnection = new TryConnectionController();
-	$tryconnection->tryconnection($_POST['nickname']);
+	#$tryconnection = new TryConnectionController(); 
+	#$tryconnection->tryconnection($_POST['nickname']);
+	if (isset($_POST['nickname']) && isset($_POST['password'])) {
+		$user = new User(['nickname' => $_POST['nickname'], 'password'=> $_POST['password'] ]);
+		$tryconnection = new TryConnectionController();
+		$tryconnection->tryconnection($user);
+	}
 }
 
 elseif ($url == 'administration') {
@@ -85,26 +91,48 @@ elseif ($url == 'administration') {
 }
 
 elseif ($url == 'nouveauchapitre') {
-	$newchapter = new NewChapterController();
-	$newchapter->newchapter();
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$newchapter = new NewChapterController();
+		$newchapter->newchapter();
+	}
+	else {
+		header('Location: connexion');
+	}
+	
+	
 }
 
 elseif ($url == 'chapitresadmin') {
-	$chaptersadmin = new ChaptersAdminController();
-	$chaptersadmin->chaptersadmin();
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$chaptersadmin = new ChaptersAdminController();
+		$chaptersadmin->chaptersadmin();	
+	}
+	else {
+		header('Location: connexion');
+	}
 }
 
 elseif ($url == 'commentairesadmin') {
-	$commentsadmin = new CommentsAdminController();
-	$commentsadmin->commentsadmin();
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$commentsadmin = new CommentsAdminController();
+		$commentsadmin->commentsadmin();	
+	}
+	else {
+		header('Location: connexion');
+	}
 }
 
-elseif ($url == 'modération') {
-	$moderate = new ModerateController();
-	$moderate->moderate();
+elseif ($url == 'moderation') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$moderate = new ModerateController();
+		$moderate->moderate();
+	}
+	else {
+		header('Location: connexion');
+	}
 }
 
 elseif ($url == 'mentions') {
 	$notice = new NoticeController();
-	$notice->notice();
+	$notice->notice();	
 }

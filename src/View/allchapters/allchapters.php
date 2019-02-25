@@ -12,8 +12,7 @@ foreach ($results as $data)
 ?>
 <div class="chapter rounded text-white mt-3 mb-3 text-center">
 	<p>
-		<a href="chapitre&id=<?= $data->getId(); ?>"><?= $data->getTitle(); ?></a>
-		
+		<a href="chapitre&id=<?= $data->getId(); ?>"><?= $data->getTitle(); ?></a>	
 	</p>
 
 	<p>

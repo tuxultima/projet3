@@ -8,7 +8,7 @@
 </head>
 <body class="darkmode">
 	<div class="container">
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar rounded-bottom navbar-expand-sm bg-dark navbar-dark">
       	<div class="container-fluid">
 	      	<ul class="nav navbar-nav">
 	      		<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
@@ -24,7 +24,7 @@
 	<main>
 		<?= $content ?>
 	</main>
-	<footer class="bg-dark text-white  ">
+	<footer class="bg-dark rounded text-white  ">
 		<div class="container-fluid text-center text-md-left ">
 			<div class="row">
 				<div  class="col-md-9">

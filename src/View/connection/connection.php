@@ -2,7 +2,7 @@
 ob_start();
 ?>
 
-<form action="tryconnection" method="post">
+<form class="text-white" action="tryconnection" method="post">
 	<p>
 		<label for="nickname">Pseudo :</label>
 		<input type="text" name="nickname" /></br>

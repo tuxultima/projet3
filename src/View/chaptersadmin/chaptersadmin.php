@@ -5,15 +5,15 @@ ob_start();
 foreach ($results as $data)
 {
 ?>
-<div class="chapter">
+<div class="chapteradmin rounded mt-3 mb-3 text-center">
 	<p>
 		<p><?= $data->getTitle(); ?></p>
-		crée le <?= $data->getDateUpload(); ?>
 	</p>
 
 	<p>
 		<?= $data->getContent(); ?>
 	</p>
+	<em>crée le <?= $data->getDateUpload(); ?></em>
 </div>
 <?php
 }
