@@ -56,4 +56,13 @@ class CommentManager extends DbManager
 		}
 		return $comments;
 	}
+
+
+	public function censor(Comment $commentId)
+	{
+		$req = $this->db->prepare('UPDATE comment SET moderate = 1 WHERE id = ?');
+		$req->execute(array($commentId->getId()));
+		return $commentId;
+	}
+
 }

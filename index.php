@@ -19,6 +19,7 @@ use App\Controller\ChaptersAdmin\ChaptersAdminController;
 use App\Controller\CommentsAdmin\CommentsAdminController;
 use App\Controller\Moderate\ModerateController;
 use App\Controller\Notice\NoticeController;
+use App\Controller\Censor\CensorController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -86,8 +87,14 @@ elseif ($url == 'tryconnection') {
 }
 
 elseif ($url == 'administration') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 	$admin = new AdminController();
-	$admin->admin();
+	$admin->admin();	
+	}
+	else {
+		header('Location: connexion');
+	}
+	
 }
 
 elseif ($url == 'nouveauchapitre') {
@@ -135,4 +142,18 @@ elseif ($url == 'moderation') {
 elseif ($url == 'mentions') {
 	$notice = new NoticeController();
 	$notice->notice();	
+}
+
+elseif ($url == 'censor') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$censored = new Comment(['id'=>$_GET['id']]);
+			$censor = new CensorController();
+			$censor->censor($censored);
+		}
+	}
+	else {
+		header('Location: connexion');
+	}
 }

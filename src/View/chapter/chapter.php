@@ -4,38 +4,54 @@ ob_start();
 
 
 
-<div class="chapter">
+<div class="chapter rounded text-white mt-3 mb-3 text-center">
 	<p>
 		<?= $result->getTitle(); ?>
-		crée le <?= $result->getDateUpload(); ?>
 	</p>
 
 	<p>
 		<?= $result->getContent(); ?>
 	</p>
+	<em>crée le <?= $result->getDateUpload(); ?></em>
 </div>
 
-<div class="comment">
-	<p>commentaires</p>
+<p class="text-white" >commentaires</p>
+
+
+	
 	<?php
 	foreach ($result->getComments() as $data)
 	{
 		?>
-		<p> <?= $data->getNickname(); ?> le <?= $data->getDateUpload(); ?> </p>
+		<?php if ($data->getModerate() == false) {
+			?>
+			<div class="comment rounded text-white mt-4 mb-4 p-1 border border-info">
+
+		<p> <?= $data->getNickname(); ?></p>
 		<p> <?= $data->getComment(); ?> </p>
+		<em> le <?= $data->getDateUpload(); ?> </em>
 		<?php 
 		if ($data->getReported() == false) {
 			?>
-			<p> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>">report</a></p>
+			<p class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>">report</a></p>
 			<?php
 		}
 		 ?>
-		
+		</div>
 		<?php
+		}
+			else {
+				?>
+				<div class="comment rounded text-white mt-4 mb-4 p-1 border border-info">
+					<p> <?= $data->getNickname(); ?></p>
+					<p class="text-white">ce commentaire a etait censuré</p>
+				</div>
+				<?php
+		}
 	}
 	?>
 
-</div>
+
 
 
 

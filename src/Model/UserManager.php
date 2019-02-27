@@ -14,12 +14,12 @@ class UserManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	public function getConnection($user)
+	public function getConnection(User $user)
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user WHERE nickname = ?');
-		$req->execute([$user]);
+		$req->execute([$user->getNickname()]);
 		$result = $req->fetch(PDO::FETCH_ASSOC);
-		return $user;
+		return $result;
 	}
 
 	public function getConnect()
