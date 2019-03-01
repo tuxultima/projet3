@@ -63,5 +63,15 @@ class ChapterManager extends DbManager
 		return $chapters;
 	}
 
+	public function addchapter(Chapter $chapter)
+	{
+		$req = $this->db->prepare('INSERT INTO chapter (title, content, dateUpload) VALUES(:title, :content, NOW())');
+		$add = $req->execute(array(
+			'title'=>$chapter->getTitle(),
+			'content'=>$content->getContent()
+		));
+		return $add;
+	}
+
 
 }

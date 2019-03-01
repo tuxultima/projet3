@@ -65,4 +65,11 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
+
+	public function agree(Comment $commentId)
+	{
+		$req = $this->db->prepare('UPDATE comment SET reported = 0 WHERE id = ?');
+		$req->execute(array($commentId->getId()));
+		return $commentId;
+	}
 }

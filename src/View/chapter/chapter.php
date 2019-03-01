@@ -33,7 +33,7 @@ ob_start();
 		<?php 
 		if ($data->getReported() == false) {
 			?>
-			<p class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>">report</a></p>
+			<p class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir signaler ce commentaire ?')">report</a></p>
 			<?php
 		}
 		 ?>
@@ -44,7 +44,7 @@ ob_start();
 				?>
 				<div class="comment rounded text-white mt-4 mb-4 p-1 border border-info">
 					<p> <?= $data->getNickname(); ?></p>
-					<p class="text-white">ce commentaire a etait censuré</p>
+					<em class="text-white">ce commentaire a etait censuré</em>
 				</div>
 				<?php
 		}

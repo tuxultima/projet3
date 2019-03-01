@@ -20,6 +20,8 @@ use App\Controller\CommentsAdmin\CommentsAdminController;
 use App\Controller\Moderate\ModerateController;
 use App\Controller\Notice\NoticeController;
 use App\Controller\Censor\CensorController;
+use App\Controller\Agree\AgreeController;
+use App\Controller\AddChapter\AddChapterController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -109,7 +111,7 @@ elseif ($url == 'nouveauchapitre') {
 	
 }
 
-elseif ($url == 'chapitresadmin') {
+elseif ($url === 'chapitresadmin') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		$chaptersadmin = new ChaptersAdminController();
 		$chaptersadmin->chaptersadmin();	
@@ -152,6 +154,35 @@ elseif ($url == 'censor') {
 			$censor = new CensorController();
 			$censor->censor($censored);
 		}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url == 'agree') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$agreed = new Comment(['id'=>$_GET['id']]);
+			$agree = new AgreeController();
+			$agree->agree($agreed);
+		}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url == 'addchapter') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_POST['title']) && isset($_POST['content'])) {
+			if (!empty($_POST['title']) && !empty($_POST['content'])) {
+				$addchapter = new AddChapterController();
+				$addchapter->addchapter($_POST['title'], $_POST['content']);
+			}
+		}
+			
 	}
 	else {
 		header('Location: connexion');

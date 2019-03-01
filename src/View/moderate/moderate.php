@@ -21,8 +21,9 @@ foreach ($results as $data)
 	<p>
 		<?= $data->getComment(); ?>
 	</p>
+	<p class="float-right p-1"><a href="agree&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir rendre ce commentaire comme non signalé ?')">autoriser</a></p>
 	<em>crée le <?= $data->getDateUpload(); ?></em>
-	<p class="float-right"> <a href="censor&id=<?= $data->getId(); ?>">censuré</a></p>
+	<p class="float-right p-1"> <a href="censor&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir modérer ce commentaire ?')">modérer</a></p>
 </div>
 <?php
 }

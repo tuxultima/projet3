@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
+  
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../../projet3/public/css/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="../../projet3/public/css/other.css">
