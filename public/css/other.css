@@ -1,0 +1,46 @@
+.a {
+	color: #9a9da0;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.a:hover {
+	color: #cccecf;
+  text-decoration: underline;
+}
+
+.b {
+	color: #80b7ff;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.b:hover {
+	color: #bfd4ff;
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.chapter {
+	background-color: #4c4c4d;
+}
+
+.darkmode {
+	background-color: #303030;
+}
+
+.chapteradmin {
+	background-color: #DBE1F1;
+}
+
+.commentadmin {
+	background-color: #96ADFC;
+}
+
+.greymode {
+	background-color: #f0f0f0;
+}
+
+.comment {
+	background-color: #2c2c2c;
+}
