@@ -22,6 +22,10 @@ use App\Controller\Notice\NoticeController;
 use App\Controller\Censor\CensorController;
 use App\Controller\Agree\AgreeController;
 use App\Controller\AddChapter\AddChapterController;
+use App\Controller\CommentModerate\CommentModerateController;
+use App\Controller\UpdateChapter\UpdateChapterController;
+use App\Controller\UpdateTheChapter\UpdateTheChapterController;
+use App\Controller\AddComment\AddCommentController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -65,7 +69,7 @@ elseif ($url === 'chapitre') {
 	}
 }
 
-elseif ($url == 'report') {
+elseif ($url === 'report') {
 	if (isset($_GET['id']) && $_GET['id'] > 0 && $_GET['chapter-id']) {
 	$reported = new Comment(['id'=>$_GET['id']]);
 	$report = new ReportController();
@@ -73,12 +77,12 @@ elseif ($url == 'report') {
 	}
 }
 
-elseif ($url == 'connexion') {
+elseif ($url === 'connexion') {
 	$connection = new ConnectionController();
 	$connection->connection();
 }
 
-elseif ($url == 'tryconnection') {
+elseif ($url === 'tryconnection') {
 	#$tryconnection = new TryConnectionController(); 
 	#$tryconnection->tryconnection($_POST['nickname']);
 	if (isset($_POST['nickname']) && isset($_POST['password'])) {
@@ -88,7 +92,7 @@ elseif ($url == 'tryconnection') {
 	}
 }
 
-elseif ($url == 'administration') {
+elseif ($url === 'administration') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 	$admin = new AdminController();
 	$admin->admin();	
@@ -99,7 +103,7 @@ elseif ($url == 'administration') {
 	
 }
 
-elseif ($url == 'nouveauchapitre') {
+elseif ($url === 'nouveauchapitre') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		$newchapter = new NewChapterController();
 		$newchapter->newchapter();
@@ -121,7 +125,7 @@ elseif ($url === 'chapitresadmin') {
 	}
 }
 
-elseif ($url == 'commentairesadmin') {
+elseif ($url === 'commentairesadmin') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		$commentsadmin = new CommentsAdminController();
 		$commentsadmin->commentsadmin();	
@@ -131,7 +135,7 @@ elseif ($url == 'commentairesadmin') {
 	}
 }
 
-elseif ($url == 'moderation') {
+elseif ($url === 'moderation') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		$moderate = new ModerateController();
 		$moderate->moderate();
@@ -141,12 +145,12 @@ elseif ($url == 'moderation') {
 	}
 }
 
-elseif ($url == 'mentions') {
+elseif ($url === 'mentions') {
 	$notice = new NoticeController();
 	$notice->notice();	
 }
 
-elseif ($url == 'censor') {
+elseif ($url === 'censor') {
 
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -160,7 +164,7 @@ elseif ($url == 'censor') {
 	}
 }
 
-elseif ($url == 'agree') {
+elseif ($url === 'agree') {
 
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -174,7 +178,7 @@ elseif ($url == 'agree') {
 	}
 }
 
-elseif ($url == 'addchapter') {
+elseif ($url === 'addchapter') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		if (isset($_POST['title']) && isset($_POST['content'])) {
 			if (!empty($_POST['title']) && !empty($_POST['content'])) {
@@ -187,4 +191,52 @@ elseif ($url == 'addchapter') {
 	else {
 		header('Location: connexion');
 	}
+}
+
+elseif ($url === 'commentairemoderer') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$commentmoderate = new CommentModerateController();
+		$commentmoderate->commentmoderate();
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'updatechapitre') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$updatechaptersure = new Chapter(['id'=>$_GET['id']]);
+			$updatechapter = new UpdateChapterController();
+			$updatechapter->updatechapter($updatechaptersure);
+		}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'updatethechapter') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		
+			if (isset($_POST['id']) && isset($_POST['title']) && isset($_POST['content'])) {
+			$updating = new Chapter(['id'=>$_POST['id']], ['title'=>$_POST['title']], ['content'=>$_POST['content']]);
+			$update = new UpdateTheChapterController();
+			$update->updatethechapter($updating);
+			}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'addcomment') {
+		if (isset($_POST['nickname']) && isset($_POST['comment'])) {
+			if (!empty($_POST['nickname']) && !empty($_POST['comment'])) {
+				$addccomment = new AddCommentController();
+				$addccomment->addcomment($_POST['nickname'], $_POST['comment']);
+			}
+		}
 }

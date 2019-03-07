@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Controller\AddComment;
+
+
+use App\Model\Comment;
+use App\Model\CommentManager;
+
+
+class AddCommentController
+{
+	public function addcomment($nickname, $comment)
+	{
+		$com = new Comment();
+		$com->setNickname($nickname);
+		$com->setComment($comment);
+		$commentManager = new CommentManager();
+		$commentManager->addcomment($com);
+		header('Location: chapitre');
+	}
+}

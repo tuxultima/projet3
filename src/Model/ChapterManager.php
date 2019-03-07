@@ -52,7 +52,7 @@ class ChapterManager extends DbManager
 
 	public function getChapters()
 	{
-		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y à %Hh%imin%ss") AS dateUpload FROM chapter ORDER BY dateUpload');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY dateUpload');
 		$results = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters = [];
 		foreach ($results as $data) 
@@ -68,9 +68,33 @@ class ChapterManager extends DbManager
 		$req = $this->db->prepare('INSERT INTO chapter (title, content, dateUpload) VALUES(:title, :content, NOW())');
 		$add = $req->execute(array(
 			'title'=>$chapter->getTitle(),
-			'content'=>$content->getContent()
+			'content'=>$chapter->getContent()
 		));
 		return $add;
+	}
+
+	public function updatechapter(Chapter $chapterId)
+	{
+		$req = $this->db->prepare('SELECT id, title, content, dateUpload FROM chapter where id = ?');
+		$req->execute(array($chapterId->getId()));
+		$data = $req->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($data as $value) {
+			$chapterId->setTitle($value['title']);
+			$chapterId->setContent($value['content']);
+			$chapterId->setDateUpload($value['dateUpload']);
+		}
+		return $chapterId;
+	}
+
+	public function updatingchapter(Chapter $chapterId)
+	{
+		$req = $this->db->prepare('UPDATE chapter SET title, content VALUES :title, :content WHERE id = $chapterId');
+		$upp = $req->execute(array(
+			'id'=>$chapterId->getId(),
+			'title'=>$chapterId->getTitle(),
+			'content'=>$chapterId->getContent()
+		));
+		return $upp;
 	}
 
 

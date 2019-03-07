@@ -15,9 +15,20 @@ ob_start();
 	<em>crée le <?= $result->getDateUpload(); ?></em>
 </div>
 
-<p class="text-white" >commentaires</p>
+<p class="text-white" >Commentaires</p>
 
-
+	<form action="addcomment" class="m-2" method="post">
+	<div class="form-group col">
+		<div class="col-xs-3">
+		<label for="nickname" class="text-white">Pseudonyme :</label>
+    <input name="nickname" type="text" class="form-control" id="nickname">
+    </div>
+  	
+  	<label for="content" class="text-white">Message :</label><br>
+    <textarea class="form-control" name="content"  id="content"></textarea>
+	</div>
+    <button type="submit" class="btn btn-primary m-1" >Envoyer</button>
+ 	</form>
 	
 	<?php
 	foreach ($result->getComments() as $data)

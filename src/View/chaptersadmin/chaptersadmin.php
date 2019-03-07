@@ -13,7 +13,10 @@ foreach ($results as $data)
 	<p>
 		<?= $data->getContent(); ?>
 	</p>
+	
 	<em>crée le <?= $data->getDateUpload(); ?></em>
+	
+	<p class="float-right "><a href="updatechapitre&id=<?= $data->getId(); ?>">modifier</a></p>
 </div>
 <?php
 }

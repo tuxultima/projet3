@@ -72,4 +72,28 @@ class CommentManager extends DbManager
 		$req->execute(array($commentId->getId()));
 		return $commentId;
 	}
+
+	public function getblacklist()
+	{
+		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE moderate = 1 ORDER BY dateUpload');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$comments = [];
+		foreach ($result as $data) 
+		{
+			$objComments = new Comment($data);
+			$comments[] = $objComments;
+		}
+		return $comments;
+	}
+
+	public function addcomment(Comment $comment)
+	{
+		$req = $this->db->prepare('INSERT INTO comment (nickname, comment, dateUpload, reported, moderate, chapter_id) VALUES(:nickname, :comment, NOW()), 0, 0, :chapter_id');
+		$add = $req->execute(array(
+			'nickname'=>$comment->getNickname(),
+			'comment'=>$comment->getComment(),
+			'chapter_id'=>$comment->getChapter_Id()
+		));
+		return $add;
+	}
 }
