@@ -88,7 +88,7 @@ class CommentManager extends DbManager
 
 	public function addcomment(Comment $comment)
 	{
-		$req = $this->db->prepare('INSERT INTO comment (nickname, comment, dateUpload, reported, moderate, chapter_id) VALUES(:nickname, :comment, NOW()), 0, 0, :chapter_id');
+		$req = $this->db->prepare('INSERT INTO comment (nickname, comment, dateUpload, reported, moderate, chapter_id) VALUES(:nickname, :comment, NOW(), 0, 0, :chapter_id)');
 		$add = $req->execute(array(
 			'nickname'=>$comment->getNickname(),
 			'comment'=>$comment->getComment(),

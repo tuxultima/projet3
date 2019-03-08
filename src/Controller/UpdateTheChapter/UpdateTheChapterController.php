@@ -9,10 +9,14 @@ use App\Model\UserManager;
 
 class UpdateTheChapterController
 {
-	public function updatethechapter(Chapter $chapterId)
+	public function updatethechapter($id, $title, $content)
 	{
+		$chap = new Chapter();
+		$chap->setId($id);
+		$chap->setTitle($title);
+		$chap->setContent($content);
 		$chapterManager = new ChapterManager();
-		$chapterManager->updatingchapter($chapterId);
+		$chapterManager->updatingchapter($chap);
 		$user = new UserManager();
 		$result = $user->getConnected();
 		$userid = $result->getId();

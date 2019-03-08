@@ -3,6 +3,7 @@ ob_start();
 ?>
 
 <form action="updatethechapter" class="m-2" method="post">
+	<input type='hidden' name='id' value='<?= $result->getId(); ?>' />
 	<div class="form-group">
 		<label for="title">Titre :</label>
     <input name="title" type="text" class="form-control" id="title" value="<?= $result->getTitle(); ?>">

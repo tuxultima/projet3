@@ -17,15 +17,23 @@ ob_start();
 
 <p class="text-white" >Commentaires</p>
 
+
+
+
+
+
 	<form action="addcomment" class="m-2" method="post">
+		<?php $result->getComments();
+		 ?>
+		<input type='hidden' name='chapter_id' value='<?= $result->getId(); ?>' />
 	<div class="form-group col">
 		<div class="col-xs-3">
 		<label for="nickname" class="text-white">Pseudonyme :</label>
     <input name="nickname" type="text" class="form-control" id="nickname">
     </div>
   	
-  	<label for="content" class="text-white">Message :</label><br>
-    <textarea class="form-control" name="content"  id="content"></textarea>
+  	<label for="comment" class="text-white">Message :</label><br>
+    <textarea class="form-control" name="comment"  id="comment"></textarea>
 	</div>
     <button type="submit" class="btn btn-primary m-1" >Envoyer</button>
  	</form>

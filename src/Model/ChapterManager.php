@@ -88,7 +88,7 @@ class ChapterManager extends DbManager
 
 	public function updatingchapter(Chapter $chapterId)
 	{
-		$req = $this->db->prepare('UPDATE chapter SET title, content VALUES :title, :content WHERE id = $chapterId');
+		$req = $this->db->prepare('UPDATE chapter SET id, title, content VALUES (:id, :title, :content) WHERE id = ?');
 		$upp = $req->execute(array(
 			'id'=>$chapterId->getId(),
 			'title'=>$chapterId->getTitle(),

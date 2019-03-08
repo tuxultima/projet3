@@ -222,9 +222,8 @@ elseif ($url === 'updatethechapter') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		
 			if (isset($_POST['id']) && isset($_POST['title']) && isset($_POST['content'])) {
-			$updating = new Chapter(['id'=>$_POST['id']], ['title'=>$_POST['title']], ['content'=>$_POST['content']]);
 			$update = new UpdateTheChapterController();
-			$update->updatethechapter($updating);
+			$update->updatethechapter($_POST['id'], $_POST['title'], $_POST['content']);
 			}
 	}
 	else {
@@ -233,10 +232,10 @@ elseif ($url === 'updatethechapter') {
 }
 
 elseif ($url === 'addcomment') {
-		if (isset($_POST['nickname']) && isset($_POST['comment'])) {
-			if (!empty($_POST['nickname']) && !empty($_POST['comment'])) {
-				$addccomment = new AddCommentController();
-				$addccomment->addcomment($_POST['nickname'], $_POST['comment']);
+		if (isset($_POST['nickname']) && isset($_POST['comment']) && isset($_POST['chapter_id'])) {
+			if (!empty($_POST['nickname']) && !empty($_POST['comment']) && !empty($_POST['chapter_id'])) {
+				$addcomment = new AddCommentController();
+				$addcomment->addcomment($_POST['nickname'], $_POST['comment'], $_POST['chapter_id']);
 			}
 		}
 }
