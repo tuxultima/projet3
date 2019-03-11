@@ -2,7 +2,9 @@
 ob_start();
 ?>
 
-
+<?php if (isset($_SESSION['flash'])) : ?>
+<div><p class="text-white"><?= $_SESSION['flash']; ?></p></div>
+<?php unset($_SESSION['flash']); endif; ?>
 
 <div class="chapter rounded text-white mt-3 mb-3 text-center">
 	<p>

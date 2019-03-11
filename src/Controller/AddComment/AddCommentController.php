@@ -17,6 +17,8 @@ class AddCommentController
 		$com->setChapter_Id($chapter_id);
 		$commentManager = new CommentManager();
 		$commentManager->addcomment($com);
-		header('Location: roman');
+		$_SESSION['flash'] = 'Votre commentaire a bien été publié.';
+		$flash = $_SESSION['flash'];
+		header('Location: chapitre&id='.$chapter_id);
 	}
 }

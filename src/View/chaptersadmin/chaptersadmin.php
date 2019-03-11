@@ -15,7 +15,8 @@ foreach ($results as $data)
 	</p>
 	
 	<em>crée le <?= $data->getDateUpload(); ?></em>
-	
+
+	<p class="float-right "><a href="deletechapitre&id=<?= $data->getId(); ?>">supprimer</a></p>
 	<p class="float-right "><a href="updatechapitre&id=<?= $data->getId(); ?>">modifier</a></p>
 </div>
 <?php

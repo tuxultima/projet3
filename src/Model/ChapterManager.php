@@ -86,15 +86,23 @@ class ChapterManager extends DbManager
 		return $chapterId;
 	}
 
+
 	public function updatingchapter(Chapter $chapterId)
 	{
-		$req = $this->db->prepare('UPDATE chapter SET id, title, content VALUES (:id, :title, :content) WHERE id = ?');
+		$req = $this->db->prepare('UPDATE chapter SET title = :title, content = :content WHERE id = :id');
 		$upp = $req->execute(array(
 			'id'=>$chapterId->getId(),
 			'title'=>$chapterId->getTitle(),
 			'content'=>$chapterId->getContent()
 		));
 		return $upp;
+	}
+
+	public function deleteChapter(Chapter $chapter)
+	{
+		$req = $this->db->prepare('DELETE FROM chapter WHERE id = :id');
+		$delete = $req->execute(['id'=>$chapter->getId()]);
+		return $delete;
 	}
 
 

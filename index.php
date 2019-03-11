@@ -26,6 +26,7 @@ use App\Controller\CommentModerate\CommentModerateController;
 use App\Controller\UpdateChapter\UpdateChapterController;
 use App\Controller\UpdateTheChapter\UpdateTheChapterController;
 use App\Controller\AddComment\AddCommentController;
+use App\Controller\DeleteChapter\DeleteChapterController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -210,6 +211,20 @@ elseif ($url === 'updatechapitre') {
 			$updatechaptersure = new Chapter(['id'=>$_GET['id']]);
 			$updatechapter = new UpdateChapterController();
 			$updatechapter->updatechapter($updatechaptersure);
+		}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'deletechapitre') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$deletechaptersure = new Chapter(['id'=>$_GET['id']]);
+			$deletechapter = new DeleteChapterController();
+			$deletechapter->deleteChapter($deletechaptersure);
 		}
 	}
 	else {
