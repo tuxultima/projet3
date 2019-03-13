@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\AddChapter;
+namespace App\Controller\AdminFolder\AddChapter;
 
 use App\Model\UserManager;
 use App\Model\User;

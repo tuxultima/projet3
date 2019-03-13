@@ -13,23 +13,27 @@ use App\Controller\Chapter\ChapterController;
 use App\Controller\Report\ReportController;
 use App\Controller\Connection\ConnectionController;
 use App\Controller\TryConnection\TryConnectionController;
-use App\Controller\Admin\AdminController;
-use App\Controller\NewChapter\NewChapterController;
-use App\Controller\ChaptersAdmin\ChaptersAdminController;
-use App\Controller\CommentsAdmin\CommentsAdminController;
-use App\Controller\Moderate\ModerateController;
+use App\Controller\AdminFolder\Admin\AdminController;
+use App\Controller\AdminFolder\NewChapter\NewChapterController;
+use App\Controller\AdminFolder\ChaptersAdmin\ChaptersAdminController;
+use App\Controller\AdminFolder\CommentsAdmin\CommentsAdminController;
+use App\Controller\AdminFolder\Moderate\ModerateController;
 use App\Controller\Notice\NoticeController;
-use App\Controller\Censor\CensorController;
-use App\Controller\Agree\AgreeController;
-use App\Controller\AddChapter\AddChapterController;
-use App\Controller\CommentModerate\CommentModerateController;
-use App\Controller\UpdateChapter\UpdateChapterController;
-use App\Controller\UpdateTheChapter\UpdateTheChapterController;
+use App\Controller\AdminFolder\Censor\CensorController;
+use App\Controller\AdminFolder\Agree\AgreeController;
+use App\Controller\AdminFolder\AddChapter\AddChapterController;
+use App\Controller\AdminFolder\CommentModerate\CommentModerateController;
+use App\Controller\AdminFolder\UpdateChapter\UpdateChapterController;
+use App\Controller\AdminFolder\UpdateTheChapter\UpdateTheChapterController;
 use App\Controller\AddComment\AddCommentController;
-use App\Controller\DeleteChapter\DeleteChapterController;
+use App\Controller\AdminFolder\DeleteChapter\DeleteChapterController;
+use App\Controller\AdminFolder\NewsletterAdmin\NewsletterAdminController;
+use App\Controller\AdminFolder\DeleteNewsletter\DeleteNewsletterController;
+use App\Controller\AddNewsletter\AddNewsletterController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
+use App\Model\Newsletter;
 
 $url = "";
 
@@ -253,4 +257,41 @@ elseif ($url === 'addcomment') {
 				$addcomment->addcomment($_POST['nickname'], $_POST['comment'], $_POST['chapter_id']);
 			}
 		}
+}
+
+elseif ($url === 'newsletteradmin') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$newsletteradmin = new NewsletterAdminController();
+		$newsletteradmin->newsletteradmin();
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'deletenewsletter') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$deletenewslettersure = new Newsletter(['id'=>$_GET['id']]);
+			$deletenewsletter = new DeleteNewsletterController();
+			$deletenewsletter->deleteNewsletter($deletenewslettersure);
+		}
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'addnewsletter') {
+		if (isset($_POST['email'])) {
+			if (!empty($_POST['email'])) {
+				$addnewsletter = new AddNewsletterController();
+				$addnewsletter->addnewsletter($_POST['email']);
+			}
+			else {
+				header('Location: newsletters');
+			}
+		}
+		
 }

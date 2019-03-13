@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\DeleteChapter;
+namespace App\Controller\AdminFolder\DeleteChapter;
 
 use App\Model\ChapterManager;
 use App\Model\Chapter;

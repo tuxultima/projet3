@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Censor;
+namespace App\Controller\AdminFolder\Censor;
 
 use App\Model\CommentManager;
 use App\Model\Comment;

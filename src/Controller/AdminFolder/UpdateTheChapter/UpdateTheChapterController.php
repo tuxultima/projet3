@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\UpdateTheChapter;
+namespace App\Controller\AdminFolder\UpdateTheChapter;
 
 use App\Model\ChapterManager;
 use App\Model\Chapter;

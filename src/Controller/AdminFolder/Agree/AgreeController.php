@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Agree;
+namespace App\Controller\AdminFolder\Agree;
 
 use App\Model\CommentManager;
 use App\Model\Comment;

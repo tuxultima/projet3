@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\UpdateChapter;
+namespace App\Controller\AdminFolder\UpdateChapter;
 
 use App\Model\ChapterManager;
 use App\Model\Chapter;
@@ -12,6 +12,6 @@ class UpdateChapterController
 	{
 		$updatechaptersure = new ChapterManager();
 		$result = $updatechaptersure->updatechapter($chapterId);
-		require('src/View/updatechapter/updatechapter.php');
+		require('src/View/adminfolder/updatechapter/updatechapter.php');
 	}
 }

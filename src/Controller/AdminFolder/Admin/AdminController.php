@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Controller\CommentModerate;
+namespace App\Controller\AdminFolder\Admin;
 
 use App\Model\UserManager;
 use App\Model\User;
-use App\Model\CommentManager;
-use App\Model\Comment;
 
-
-class CommentModerateController
+class AdminController
 {
-	public function commentmoderate()
+	public function admin()
 	{
-		$comments = new CommentManager();
-		$results = $comments->getblacklist();
 		$user = new UserManager();
 		$result = $user->getConnected();
 		$userid = $result->getId();
 		$usernickname = $result->getNickname();
 		if ($_SESSION['id'] == $userid && $_SESSION['nickname'] == $usernickname) {
-		require('src/View/commentmoderate/commentmoderate.php');
+		require('src/View/adminfolder/admin/admin.php');
 		}
 		else{
 			header('Location:connexion');

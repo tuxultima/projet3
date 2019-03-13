@@ -17,6 +17,7 @@
 				<li class="nav-item"><a class="nav-link text-white" href="chapitresadmin">Chapitres</a></li>
 	      		<li class="nav-item"><a class="nav-link text-white" href="commentairesadmin">Commentaires</a></li>
 	      		<li class="nav-item"><a class="nav-link text-white" href="moderation">Modération</a></li> 		<li class="nav-item"><a class="nav-link text-white" href="commentairemoderer">Commentaires modérer</a></li>
+	      		<li class="nav-item"><a class="nav-link text-white" href="newsletteradmin">Newsletter</a></li>
 	      	</ul>
 	    </div>
 	  </nav>

@@ -40,7 +40,7 @@ class TryConnectionController
 			if (password_verify($user->getPassword(),$check['password'])) {
 				$_SESSION['id'] = $check['id'];
 				$_SESSION['nickname'] = $check['nickname'];
-				require ('src/View/admin/admin.php');
+				require ('src/View/adminfolder/admin/admin.php');
 			}
 		}
 		else {
