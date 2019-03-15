@@ -13,7 +13,7 @@ class NewsletterAdminController
 	public function newsletteradmin()
 	{
 		$newsletters = new NewsletterManager();
-		$results = $newsletters->getNewsletter();
+		$results = $newsletters->getEmail();
 		$user = new UserManager();
 		$result = $user->getConnected();
 		$userid = $result->getId();

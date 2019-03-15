@@ -6,6 +6,8 @@ use App\Model\UserManager;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\ChapterManager;
+use App\Model\NewsletterManager;
+use App\Service\Mail;
 
 
 class AddChapterController
@@ -21,6 +23,14 @@ class AddChapterController
 		$result = $user->getConnected();
 		$userid = $result->getId();
 		$usernickname = $result->getNickname();
+
+		$nManager = new NewsletterManager();
+		$email = $nManager->getEmail();
+		if ($email != false) {
+			$objMail = new Mail();
+			$objMail->sendMail($email, $ch);
+		}
+
 		if ($_SESSION['id'] == $userid && $_SESSION['nickname'] == $usernickname) {
 		header('Location: chapitresadmin');
 		}

@@ -15,17 +15,22 @@ class NewsletterManager extends DbManager
 	}
 	
 
-	public function getNewsletter()
+	public function getEmail()
 	{
 		$req = $this->db->query('SELECT id, email FROM newsletter ORDER BY id');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
-		$newsletter = [];
-		foreach ($result as $data )
-		{
-			$objNewsletter = new Newsletter($data);
-			$newsletter[] = $objNewsletter;
+		if ($result) {
+			
+		
+			$newsletter = [];
+			foreach ($result as $data )
+			{
+				$objNewsletter = new Newsletter($data);
+				$newsletter[] = $objNewsletter;
+			}
+			return $newsletter;
 		}
-		return $newsletter;
+		return false;
 	}
 
 	public function deleteNewsletter(Newsletter $newsletter)
