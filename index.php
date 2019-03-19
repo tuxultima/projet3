@@ -30,6 +30,8 @@ use App\Controller\AdminFolder\DeleteChapter\DeleteChapterController;
 use App\Controller\AdminFolder\NewsletterAdmin\NewsletterAdminController;
 use App\Controller\AdminFolder\DeleteNewsletter\DeleteNewsletterController;
 use App\Controller\AddNewsletter\AddNewsletterController;
+use App\Controller\AddContact\AddContactController;
+use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -294,4 +296,27 @@ elseif ($url === 'addnewsletter') {
 			}
 		}
 		
+}
+
+elseif ($url === 'addcontact') {
+		if (isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['message']) & isset($_POST['boolnews'])) {
+			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) && !empty($_POST['boolnews'])) {
+				$addcontact = new AddContactController();
+				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews']);
+			}
+			else {
+				header('Location: contact');
+			}
+		}
+		
+}
+
+elseif ($url === 'contactadmin') {
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		$contactadmin = new ContactAdminController();
+		$contactadmin->contactadmin();
+	}
+	else {
+		header('Location: connexion');
+	}
 }
