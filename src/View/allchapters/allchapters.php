@@ -10,10 +10,10 @@ ob_start();
 foreach ($results as $data)
 {
 ?>
-<div class="chapter rounded text-white mt-3 mb-3 text-center">
-	<p>
-		<a href="chapitre&id=<?= $data->getId(); ?>"><?= $data->getTitle(); ?></a>	
-	</p>
+<div class="chapter rounded border border-info text-white mt-3 mb-3 text-center">
+	<h3 >
+		<a class="a2"  href="chapitre&id=<?= $data->getId(); ?>"><?= $data->getTitle(); ?></a>	
+	</h3>
 
 	<p>
 		<?= $data->getContent(); ?>

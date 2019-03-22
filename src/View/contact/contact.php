@@ -17,6 +17,7 @@ ob_start();
     	<label class="text-white" for="message">Message :</label>
     	<textarea rows="5" class="form-control" name="message"  id="message"></textarea>
     	<div class="form-check text-white">
+        <input type="hidden" id="boolnews0" class="form-check-input" name="boolnews" value="0">
     	<input type="checkbox" id="boolnews" class="form-check-input" name="boolnews" value="1">
     	<label class="form-check-label" for="boolnews">Je souhaite me désinscrire de la newsletter.</label>
     	</div>

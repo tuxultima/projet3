@@ -8,6 +8,8 @@ ob_start();
 
 
 <div class="newsletterfront rounded mt-3 mb-3 border border-info">
+	<h2 class="text-white m-1">Venez vous inscrire a ma newsletter !</h2>
+	<p class="text-white m-1">Soyez informés à la sortie de chaque nouveau chapitre.</p>
 <form action="addnewsletter" class="m-2" method="post">
 	<div class="form-group">
 		<label class="text-white" for="email">E-mail :</label>

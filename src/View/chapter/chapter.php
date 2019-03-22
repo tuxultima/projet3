@@ -6,10 +6,10 @@ ob_start();
 <div><p class="text-white"><?= $_SESSION['flash']; ?></p></div>
 <?php unset($_SESSION['flash']); endif; ?>
 
-<div class="chapter rounded text-white mt-3 mb-3 text-center">
-	<p>
+<div class="chapter rounded text-white mt-3 mb-3 text-center border border-info">
+	<h3>
 		<?= $result->getTitle(); ?>
-	</p>
+	</h3>
 
 	<p>
 		<?= $result->getContent(); ?>
@@ -48,13 +48,14 @@ ob_start();
 			?>
 			<div class="comment rounded text-white mt-4 mb-4 p-1 border border-info">
 
-		<p> <?= $data->getNickname(); ?></p>
-		<p> <?= $data->getComment(); ?> </p>
+		<p> <?= $data->getNickname(); ?> </p>
 		<em> le <?= $data->getDateUpload(); ?> </em>
+		<hr class="hrstyle">
+		<p> <?= $data->getComment(); ?> 
 		<?php 
 		if ($data->getReported() == false) {
 			?>
-			<p class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir signaler ce commentaire ?')">report</a></p>
+			<em class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir signaler ce commentaire ?')">report</a></em></p>
 			<?php
 		}
 		 ?>

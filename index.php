@@ -32,10 +32,12 @@ use App\Controller\AdminFolder\DeleteNewsletter\DeleteNewsletterController;
 use App\Controller\AddNewsletter\AddNewsletterController;
 use App\Controller\AddContact\AddContactController;
 use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
+use App\Controller\AdminFolder\DeleteContact\DeleteContactController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
 use App\Model\Newsletter;
+use App\Model\Contact;
 
 $url = "";
 
@@ -154,7 +156,7 @@ elseif ($url === 'moderation') {
 
 elseif ($url === 'mentions') {
 	$notice = new NoticeController();
-	$notice->notice();	
+	$notice->notice();
 }
 
 elseif ($url === 'censor') {
@@ -300,7 +302,8 @@ elseif ($url === 'addnewsletter') {
 
 elseif ($url === 'addcontact') {
 		if (isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['message']) & isset($_POST['boolnews'])) {
-			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) && !empty($_POST['boolnews'])) {
+
+			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) ) {
 				$addcontact = new AddContactController();
 				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews']);
 			}
@@ -308,13 +311,26 @@ elseif ($url === 'addcontact') {
 				header('Location: contact');
 			}
 		}
-		
 }
 
 elseif ($url === 'contactadmin') {
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		$contactadmin = new ContactAdminController();
 		$contactadmin->contactadmin();
+	}
+	else {
+		header('Location: connexion');
+	}
+}
+
+elseif ($url === 'deletecontact') {
+
+	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
+		if (isset($_GET['id']) && $_GET['id'] > 0) {
+			$deletecontactsure = new Contact(['id'=>$_GET['id']]);
+			$deletecontact = new DeleteContactController();
+			$deletecontact->deleteContact($deletecontactsure);
+		}
 	}
 	else {
 		header('Location: connexion');

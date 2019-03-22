@@ -42,4 +42,11 @@ class ContactManager extends DbManager
 		}
 		return false;
 	}
+
+	public function deleteContact(Contact $contact)
+	{
+		$req = $this->db->prepare('DELETE FROM contact WHERE id = :id');
+		$delete = $req->execute(['id'=>$contact->getId()]);
+		return $delete;
+	}
 }
