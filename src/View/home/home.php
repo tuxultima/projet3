@@ -13,13 +13,14 @@ if(isset($_POST['email'])){
     require("vendor/phpmailer/phpmailer/src/SMTP.php");
     $mail = new PHPMailer();
     $mail->IsSMTP();
-    $mail->SMTPAuth = false;
-    $mail->SMTPSecure = "tls";
+    $mail->SMTPAuth = true;
     $mail->Host = "smtp.gmail.com";
     $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
     $mail->SMTPDebug = 2;
     $mail->Username = "billet.alaska@gmail.com";
     $mail->Password = "bookalaska2019";
+    $mail->Debugoutput = 'html';
 
     $mail->From = "billet.alaska@gmail.com";
     $mail->FromName = "jean";

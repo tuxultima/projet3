@@ -288,10 +288,10 @@ elseif ($url === 'deletenewsletter') {
 }
 
 elseif ($url === 'addnewsletter') {
-		if (isset($_POST['email'])) {
-			if (!empty($_POST['email'])) {
+		if (isset($_POST['email']) && isset($_POST['rgpd'])) {
+			if (!empty($_POST['email']) && !empty($_POST['rgpd'])) {
 				$addnewsletter = new AddNewsletterController();
-				$addnewsletter->addnewsletter($_POST['email']);
+				$addnewsletter->addnewsletter($_POST['email'], $_POST['rgpd']);
 			}
 			else {
 				header('Location: newsletters');
@@ -301,11 +301,11 @@ elseif ($url === 'addnewsletter') {
 }
 
 elseif ($url === 'addcontact') {
-		if (isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['message']) & isset($_POST['boolnews'])) {
+		if (isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['message']) && isset($_POST['boolnews']) && isset($_POST['rgpd'])) {
 
-			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) ) {
+			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) && !empty($_POST['rgpd'])) {
 				$addcontact = new AddContactController();
-				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews']);
+				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews'] ,$_POST['rgpd']);
 			}
 			else {
 				header('Location: contact');

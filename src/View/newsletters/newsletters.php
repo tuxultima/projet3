@@ -13,7 +13,11 @@ ob_start();
 <form action="addnewsletter" class="m-2" method="post">
 	<div class="form-group">
 		<label class="text-white" for="email">E-mail :</label>
-    <input name="email" type="text" class="form-control" id="email">
+	    <input name="email" type="text" class="form-control" id="email" required>
+	    <div class="form-check text-white">
+	    <input type="checkbox" class="form-check-input" name="rgpd" id="rgpd" value="1" checked required>
+	    <label class="form-check-label" for="rgpd">J'ai bien pris compte de l'envoie de mes données personnel dans les conditions d'utilisations.</label>
+		</div>
   	</div>
     <button type="submit" class="btn btn-primary m-1" >Envoyer</button>
  </form>

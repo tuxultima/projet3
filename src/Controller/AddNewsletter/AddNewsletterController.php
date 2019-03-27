@@ -9,10 +9,11 @@ use App\Model\NewsletterManager;
 
 class AddNewsletterController
 {
-	public function addnewsletter($newsletter)
+	public function addnewsletter($newsletter, $rgpd)
 	{
 		$news = new Newsletter();
 		$news->setEmail($newsletter);
+		$news->setRgpd($rgpd);
 		$newsletterManager = new NewsletterManager();
 		$newsletterManager->addnewsletter($news);
 		$_SESSION['flash'] = 'Votre e-mail a bien été inscrit.';

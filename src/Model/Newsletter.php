@@ -7,6 +7,7 @@ class Newsletter
 {
 	private $id;
 	private $email;
+  private $rgpd;
 
 
 
@@ -55,5 +56,15 @@ public function hydrate(array $values)
   public function setEmail($email): void
   {
   	$this->email = $email;
+  }
+
+  public function getRgpd()
+  {
+    return $this->rgpd;
+  }
+
+  public function setRgpd($rgpd)
+  {
+    $this->rgpd = $rgpd;
   }
 }

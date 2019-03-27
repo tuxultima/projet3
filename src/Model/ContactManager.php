@@ -15,19 +15,20 @@ class ContactManager extends DbManager
 
 	public function addContact(Contact $contact)
 	{
-		$req = $this->db->prepare('INSERT INTO contact (email, sujet, message, boolnews) VALUES(:email, :sujet, :message, :boolnews)');
+		$req = $this->db->prepare('INSERT INTO contact (email, sujet, message, boolnews, rgpd) VALUES(:email, :sujet, :message, :boolnews, :rgpd)');
 		$add = $req->execute(array(
 			'email'=>$contact->getEmail(),
 			'sujet'=>$contact->getSujet(),
 			'message'=>$contact->getMessage(),
-			'boolnews'=>$contact->getBoolnews()
+			'boolnews'=>$contact->getBoolnews(),
+			'rgpd'=>$contact->getRgpd()
 		));
 		return $add;
 	}
 
 	public function getContacts()
 	{
-		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews FROM contact ORDER BY id');
+		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd FROM contact ORDER BY id');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		if ($result) {
 			

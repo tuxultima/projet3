@@ -10,6 +10,7 @@ class Contact
 	private $sujet;
 	private	$message;
 	private $boolnews;
+  private $rgpd;
 
 
 
@@ -87,6 +88,16 @@ public function hydrate(array $values)
   public function setBoolnews($boolnews)
   {
     $this->boolnews = $boolnews;
+  }
+
+  public function getRgpd()
+  {
+    return $this->rgpd;
+  }
+
+  public function setRgpd($rgpd)
+  {
+    $this->rgpd = $rgpd;
   }
 
 }

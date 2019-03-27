@@ -17,7 +17,7 @@ class NewsletterManager extends DbManager
 
 	public function getEmail()
 	{
-		$req = $this->db->query('SELECT id, email FROM newsletter ORDER BY id');
+		$req = $this->db->query('SELECT id, email, rgpd FROM newsletter ORDER BY id');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		if ($result) {
 			
@@ -42,9 +42,10 @@ class NewsletterManager extends DbManager
 
 	public function addnewsletter(Newsletter $newsletter)
 	{
-		$req = $this->db->prepare('INSERT INTO newsletter (email) VALUES(:email)');
+		$req = $this->db->prepare('INSERT INTO newsletter (email, rgpd) VALUES(:email, :rgpd)');
 		$add = $req->execute(array(
 			'email'=>$newsletter->getEmail(),
+			'rgpd'=>$newsletter->getRgpd()
 		));
 		return $add;
 	}
