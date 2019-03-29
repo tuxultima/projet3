@@ -9,6 +9,10 @@ class User
 	private $id;
 	private $nickname;
 	private $password;
+  private $email;string
+  private $token;string
+  private $tokenAddDate;datetime
+
 
 
 

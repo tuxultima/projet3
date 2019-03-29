@@ -24,6 +24,7 @@ class CommentManager extends DbManager
 		return $comment;
 	}
 
+	// fonction pour report un commentaire
 	public function report(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET reported = 1 WHERE id = ?');
@@ -31,6 +32,7 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
+	// fonction pour afficher les commentaire qui on etait report
 	public function getreported()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE reported = 1 ORDER BY dateUpload');
@@ -44,6 +46,7 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
+	// fonction pour afficher les commentaires
 	public function getcomment()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment ORDER BY dateUpload');
@@ -57,7 +60,7 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
-
+	// fonction pour censuré les commentaires
 	public function censor(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET moderate = 1 WHERE id = ?');
@@ -65,7 +68,7 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
-
+	// fonction pour validé le contenu d'un commentaire
 	public function agree(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET reported = 0 WHERE id = ?');
@@ -73,6 +76,7 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
+	// fonction pour afficher les commentaire censuré
 	public function getblacklist()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE moderate = 1 ORDER BY dateUpload');
@@ -86,6 +90,7 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
+	// fonction pour ajouter un commentaire en base de donnée
 	public function addcomment(Comment $comment)
 	{
 		$req = $this->db->prepare('INSERT INTO comment (nickname, comment, dateUpload, reported, moderate, chapter_id) VALUES(:nickname, :comment, NOW(), 0, 0, :chapter_id)');

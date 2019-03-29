@@ -9,6 +9,9 @@ use App\Model\ContactManager;
 
 class AddContactController
 {
+	/**
+	* add new contact in database
+	*/
 	public function addcontact($email, $sujet, $message, $boolnews, $rgpd)
 	{
 		$cont = new Contact();

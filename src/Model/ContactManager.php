@@ -13,6 +13,7 @@ class ContactManager extends DbManager
 		$this->db = self::connect();
 	}
 
+	// fonction pour ajouter un message avec le formulaire de contact
 	public function addContact(Contact $contact)
 	{
 		$req = $this->db->prepare('INSERT INTO contact (email, sujet, message, boolnews, rgpd) VALUES(:email, :sujet, :message, :boolnews, :rgpd)');
@@ -26,6 +27,7 @@ class ContactManager extends DbManager
 		return $add;
 	}
 
+	// fonction pour afficher les message envoyer avec le formulaire de contact
 	public function getContacts()
 	{
 		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd FROM contact ORDER BY id');
@@ -44,6 +46,11 @@ class ContactManager extends DbManager
 		return false;
 	}
 
+	/**
+	*
+	*
+	*
+	*/
 	public function deleteContact(Contact $contact)
 	{
 		$req = $this->db->prepare('DELETE FROM contact WHERE id = :id');

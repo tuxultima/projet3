@@ -14,7 +14,7 @@ class NewsletterManager extends DbManager
 		$this->db = self::connect();
 	}
 	
-
+	// fonction pour afficher les email ajouter à la newsletter
 	public function getEmail()
 	{
 		$req = $this->db->query('SELECT id, email, rgpd FROM newsletter ORDER BY id');
@@ -33,6 +33,7 @@ class NewsletterManager extends DbManager
 		return false;
 	}
 
+	// fonction pour supprimer un mail inscrit à la newsletter
 	public function deleteNewsletter(Newsletter $newsletter)
 	{
 		$req = $this->db->prepare('DELETE FROM newsletter WHERE id = :id');
@@ -40,6 +41,7 @@ class NewsletterManager extends DbManager
 		return $delete;
 	}
 
+	// fonction pour ajouter un mail à la newsletter
 	public function addnewsletter(Newsletter $newsletter)
 	{
 		$req = $this->db->prepare('INSERT INTO newsletter (email, rgpd) VALUES(:email, :rgpd)');

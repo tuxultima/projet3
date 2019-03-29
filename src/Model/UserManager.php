@@ -14,6 +14,7 @@ class UserManager extends DbManager
 		$this->db = self::connect();
 	}
 
+	// fonction pour que l'utilisateur se connecte
 	public function getConnection(User $user)
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user WHERE nickname = ?');
@@ -41,6 +42,7 @@ class UserManager extends DbManager
 		
 	}
 
+	// fonction pour vérifier que l'utilisateur est bien connecter
 	public function getConnected()
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user ');

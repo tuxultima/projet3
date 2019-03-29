@@ -5,10 +5,25 @@ namespace App\Model;
 
 class Chapter
 {
+  /**
+  * @var int
+  */
 	private $id;
+  /**
+  * @var string
+  */
 	private $title;
+  /**
+  * @var string
+  */
 	private $content;
+  /**
+  * @var \Datetime
+  */
 	private	$dateUpload;
+  /**
+  * @var array
+  */
 	private $comments = [];
 
 
@@ -39,6 +54,10 @@ public function hydrate(array $values)
     return $this;
   }
 
+/**
+* get chapter id
+* @return int
+*/
 public function getId(): ?int
 {
 	return $this->id;
@@ -54,6 +73,10 @@ public function getTitle(): ?string
 	return $this->title;
 }
 
+/**
+* set title
+* @param string $title
+*/
 public function setTitle($title): void
 {
 	$this->title = $title;
@@ -84,6 +107,10 @@ public function getComments(): array
 	return $this->comments;
 }
 
+  /**
+  * set comments
+  * @param $comments[]
+  */
 public function setComments($comments)
 {
 	$this->comments = $comments;

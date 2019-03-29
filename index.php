@@ -33,6 +33,7 @@ use App\Controller\AddNewsletter\AddNewsletterController;
 use App\Controller\AddContact\AddContactController;
 use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
 use App\Controller\AdminFolder\DeleteContact\DeleteContactController;
+use App\Controller\TryConnection\ResetPasswordController;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -99,6 +100,26 @@ elseif ($url === 'tryconnection') {
 		$tryconnection = new TryConnectionController();
 		$tryconnection->tryconnection($user);
 	}
+}
+
+elseif ($url === 'mot-de-passe-oublie') {
+	$password = new ResetPasswordController();
+	$password->changePasswordMailForm();
+}
+
+elseif ($url === 'forgot-password-mail') {
+	$password = new ResetPasswordController();
+	$password->changePasswordMail();
+}
+
+elseif ($url === 'changement-de-mot-de-passe') {
+	$password = new ResetPasswordController();
+	$password->changePasswordForm();
+}
+
+elseif ($url === 'update-password') {
+	$password = new ResetPasswordController();
+	$password->updatePassword();
 }
 
 elseif ($url === 'administration') {
@@ -288,6 +309,7 @@ elseif ($url === 'deletenewsletter') {
 }
 
 elseif ($url === 'addnewsletter') {
+	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['email'] ) ) {
 		if (isset($_POST['email']) && isset($_POST['rgpd'])) {
 			if (!empty($_POST['email']) && !empty($_POST['rgpd'])) {
 				$addnewsletter = new AddNewsletterController();
@@ -297,15 +319,16 @@ elseif ($url === 'addnewsletter') {
 				header('Location: newsletters');
 			}
 		}
-		
+	}	
 }
 
 elseif ($url === 'addcontact') {
 		if (isset($_POST['email']) && isset($_POST['sujet']) && isset($_POST['message']) && isset($_POST['boolnews']) && isset($_POST['rgpd'])) {
-
 			if (!empty($_POST['email']) && !empty($_POST['sujet']) && !empty($_POST['message']) && !empty($_POST['rgpd'])) {
+				if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['email'] ) ) {
 				$addcontact = new AddContactController();
 				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews'] ,$_POST['rgpd']);
+				}
 			}
 			else {
 				header('Location: contact');

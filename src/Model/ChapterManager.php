@@ -13,6 +13,10 @@ class ChapterManager extends DbManager
 		$this->db = self::connect();
 	}
 
+	/**
+	* get one chapter by id with and his comments
+	* @return Chapter
+	*/
 	public function getChapterOnly(Chapter $chapter)
 	{
 		$req = $this->db->prepare('SELECT c.id, c.title, c.content, c.dateUpload, co.id AS com_id, co.nickname, co.comment, co.dateUpload AS com_date, co.chapter_id, co.reported, co.moderate FROM chapter c LEFT JOIN comment co ON co.chapter_id = c.id WHERE c.id = ?');
@@ -50,6 +54,7 @@ class ChapterManager extends DbManager
 		return $chapterOnly;
 	}
 
+	//fonction pour afficher tout les chapitres(par ordre de création)
 	public function getChapters()
 	{
 		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY dateUpload');
@@ -63,6 +68,7 @@ class ChapterManager extends DbManager
 		return $chapters;
 	}
 
+	// fonction pour ajouter un chapitre à la base de donnée
 	public function addchapter(Chapter $chapter)
 	{
 		$req = $this->db->prepare('INSERT INTO chapter (title, content, dateUpload) VALUES(:title, :content, NOW())');
@@ -73,6 +79,7 @@ class ChapterManager extends DbManager
 		return $add;
 	}
 
+	// fonction qui appele le contenu d'un chapitre pour mener à sa modification
 	public function updatechapter(Chapter $chapterId)
 	{
 		$req = $this->db->prepare('SELECT id, title, content, dateUpload FROM chapter where id = ?');
@@ -86,7 +93,7 @@ class ChapterManager extends DbManager
 		return $chapterId;
 	}
 
-
+	// fonction pour modifier le contenu d'un chapitre
 	public function updatingchapter(Chapter $chapterId)
 	{
 		$req = $this->db->prepare('UPDATE chapter SET title = :title, content = :content WHERE id = :id');
@@ -98,6 +105,7 @@ class ChapterManager extends DbManager
 		return $upp;
 	}
 
+	// fonction pour supprimer un chapitre
 	public function deleteChapter(Chapter $chapter)
 	{
 		$req = $this->db->prepare('DELETE FROM chapter WHERE id = :id');
