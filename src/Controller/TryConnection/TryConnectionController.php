@@ -7,29 +7,9 @@ use App\Model\User;
 
 class TryConnectionController
 {
-	/*public function tryconnection($nickname)
-	{
-		$tryconnection = new UserManager();
-		$result = $tryconnection->getConnection($nickname);
-		$truepseudo = $result->getNickname();
-		$truepassword = $result->getPassword();
-		$pseudo = $_POST['nickname'];
-		$pass = $_POST['password'];
-		$pass = hash('sha512', $pass);
-		
-		if ($truepseudo == $pseudo && $truepassword == $pass) {
-			$_SESSION['id'] = $result->getId();
-			$_SESSION['nickname'] = $result->getNickname();
-			header('Location:administration');
-		}
-
-		else
-		{
-			header('Location: connexion');
-		}
-		require('src/View/tryconnection/tryconnection.php');
-	}*/
-
+	/**
+  	* connection admin account
+  	*/
 	public function tryconnection(User $user)
 	{
 		

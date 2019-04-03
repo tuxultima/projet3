@@ -8,6 +8,9 @@ use App\Model\Chapter;
 
 class DeleteChapterController
 {
+	/**
+	* delete chapter in database
+	*/
 	public function deleteChapter(Chapter $chapterId)
 	{
 		$deleteChapter = new ChapterManager();

@@ -9,6 +9,9 @@ use App\Model\UserManager;
 
 class UpdateTheChapterController
 {
+	/**
+	* update chapter in database
+	*/
 	public function updatethechapter($id, $title, $content)
 	{
 		$chap = new Chapter();

@@ -9,6 +9,9 @@ use App\Model\NewsletterManager;
 
 class AddNewsletterController
 {
+	/**
+	* add new newsletter in database
+	*/
 	public function addnewsletter($newsletter, $rgpd)
 	{
 		$news = new Newsletter();

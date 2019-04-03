@@ -8,6 +8,9 @@ use App\Model\Comment;
 
 class CensorController
 {
+	/**
+  	* censor comment by id
+  	*/
 	public function censor(Comment $commentId)
 	{
 		$censored = new CommentManager();

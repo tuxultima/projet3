@@ -24,7 +24,10 @@ class CommentManager extends DbManager
 		return $comment;
 	}
 
-	// fonction pour report un commentaire
+	/**
+	* report one comment get by id
+	* @return CommentId
+	*/
 	public function report(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET reported = 1 WHERE id = ?');
@@ -32,7 +35,10 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
-	// fonction pour afficher les commentaire qui on etait report
+	/**
+	* get all comments reported order by dateUpload
+	* @return Comments
+	*/
 	public function getreported()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE reported = 1 ORDER BY dateUpload');
@@ -46,7 +52,10 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
-	// fonction pour afficher les commentaires
+	/**
+	* get all comments order by dateUpload
+	* @return Comments
+	*/
 	public function getcomment()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment ORDER BY dateUpload');
@@ -60,7 +69,10 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
-	// fonction pour censuré les commentaires
+	/**
+	* censor one comment get by id
+	* @return CommentId
+	*/
 	public function censor(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET moderate = 1 WHERE id = ?');
@@ -68,7 +80,10 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
-	// fonction pour validé le contenu d'un commentaire
+	/**
+	* agreed one comment get by id
+	* @return CommentId
+	*/
 	public function agree(Comment $commentId)
 	{
 		$req = $this->db->prepare('UPDATE comment SET reported = 0 WHERE id = ?');
@@ -76,7 +91,10 @@ class CommentManager extends DbManager
 		return $commentId;
 	}
 
-	// fonction pour afficher les commentaire censuré
+	/**
+	* get all censored comments order by dateUpload
+	* @return Comments
+	*/
 	public function getblacklist()
 	{
 		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment WHERE moderate = 1 ORDER BY dateUpload');
@@ -90,7 +108,10 @@ class CommentManager extends DbManager
 		return $comments;
 	}
 
-	// fonction pour ajouter un commentaire en base de donnée
+	/**
+	* add one comment
+	* @return Add
+	*/
 	public function addcomment(Comment $comment)
 	{
 		$req = $this->db->prepare('INSERT INTO comment (nickname, comment, dateUpload, reported, moderate, chapter_id) VALUES(:nickname, :comment, NOW(), 0, 0, :chapter_id)');

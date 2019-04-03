@@ -8,6 +8,9 @@ use App\Model\Newsletter;
 
 class DeleteNewsletterController
 {
+	/**
+	* delete newsletter in database
+	*/
 	public function deleteNewsletter(Newsletter $newsletter)
 	{
 		$deleteNewsletter = new NewsletterManager();

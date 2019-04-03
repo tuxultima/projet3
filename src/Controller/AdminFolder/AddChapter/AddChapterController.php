@@ -12,6 +12,9 @@ use App\Service\Mail;
 
 class AddChapterController
 {
+	/**
+	* add new chapter in database
+	*/
 	public function addchapter($title, $content)
 	{
 		$ch = new Chapter();

@@ -9,6 +9,9 @@ use App\Model\CommentManager;
 
 class AddCommentController
 {
+	/**
+	* add new comment in database
+	*/
 	public function addcomment($nickname, $comment, $chapter_id)
 	{
 		$com = new Comment();

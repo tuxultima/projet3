@@ -8,6 +8,9 @@ use App\Model\ChapterManager;
 
 class ChaptersAdminController
 {
+	/**
+  	* get chapters by id
+  	*/
 	public function chaptersadmin()
 	{
 		$chapter = new ChapterManager();

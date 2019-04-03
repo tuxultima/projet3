@@ -9,6 +9,9 @@ use App\Model\Comment;
 
 class CommentsAdminController
 {
+	/**
+  	* get comments by id
+  	*/
 	public function commentsadmin()
 	{
 		$comments = new CommentManager();

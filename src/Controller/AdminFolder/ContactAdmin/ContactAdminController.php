@@ -10,6 +10,9 @@ use App\Model\Contact;
 
 class ContactAdminController
 {
+	/**
+  	* get contact by id
+  	*/
 	public function contactadmin()
 	{
 		$contacts = new ContactManager();

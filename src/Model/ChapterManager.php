@@ -43,18 +43,10 @@ class ChapterManager extends DbManager
 		return $chapter;
 	}
 
-	public function getChapterNan($postId)
-	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter where id = ?');
-		$data = $req->fetchAll(PDO::FETCH_ASSOC);
-		$req->execute(array($postId));
-		$chapterOnly = [];
-		$objChapter = new Chapter($data);
-		$chapterOnly[] = $objChapter;
-		return $chapterOnly;
-	}
-
-	//fonction pour afficher tout les chapitres(par ordre de création)
+	/**
+	* get all chapters order by dateUpload
+	* @return Chapter
+	*/
 	public function getChapters()
 	{
 		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY dateUpload');
@@ -68,7 +60,10 @@ class ChapterManager extends DbManager
 		return $chapters;
 	}
 
-	// fonction pour ajouter un chapitre à la base de donnée
+	/**
+	* add one chapter
+	* @return Add
+	*/
 	public function addchapter(Chapter $chapter)
 	{
 		$req = $this->db->prepare('INSERT INTO chapter (title, content, dateUpload) VALUES(:title, :content, NOW())');
@@ -79,7 +74,10 @@ class ChapterManager extends DbManager
 		return $add;
 	}
 
-	// fonction qui appele le contenu d'un chapitre pour mener à sa modification
+	/**
+	* take content of one chapter get by id
+	* @return ChapterId
+	*/
 	public function updatechapter(Chapter $chapterId)
 	{
 		$req = $this->db->prepare('SELECT id, title, content, dateUpload FROM chapter where id = ?');
@@ -93,7 +91,10 @@ class ChapterManager extends DbManager
 		return $chapterId;
 	}
 
-	// fonction pour modifier le contenu d'un chapitre
+	/**
+	* update one chapter get by id
+	* @return upp
+	*/
 	public function updatingchapter(Chapter $chapterId)
 	{
 		$req = $this->db->prepare('UPDATE chapter SET title = :title, content = :content WHERE id = :id');
@@ -105,13 +106,14 @@ class ChapterManager extends DbManager
 		return $upp;
 	}
 
-	// fonction pour supprimer un chapitre
+	/**
+	* delete one chapter get by id
+	* @return delete
+	*/
 	public function deleteChapter(Chapter $chapter)
 	{
 		$req = $this->db->prepare('DELETE FROM chapter WHERE id = :id');
 		$delete = $req->execute(['id'=>$chapter->getId()]);
 		return $delete;
 	}
-
-
 }

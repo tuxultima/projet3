@@ -8,6 +8,9 @@ use App\Model\Chapter;
 
 class UpdateChapterController
 {
+	/**
+  	* set the form update chapter page
+  	*/
 	public function updatechapter(Chapter $chapterId)
 	{
 		$updatechaptersure = new ChapterManager();

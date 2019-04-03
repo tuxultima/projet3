@@ -7,6 +7,9 @@ use App\Model\User;
 
 class AdminController
 {
+	/**
+  	* render the admin page
+  	*/
 	public function admin()
 	{
 		$user = new UserManager();

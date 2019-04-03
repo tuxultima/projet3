@@ -10,6 +10,9 @@ use App\Model\Newsletter;
 
 class NewsletterAdminController
 {
+	/**
+  	* get newsletter by id
+  	*/
 	public function newsletteradmin()
 	{
 		$newsletters = new NewsletterManager();

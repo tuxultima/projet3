@@ -13,10 +13,13 @@ class ContactManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	// fonction pour ajouter un message avec le formulaire de contact
+	/**
+	* add one contact
+	* @return Add
+	*/
 	public function addContact(Contact $contact)
 	{
-		$req = $this->db->prepare('INSERT INTO contact (email, sujet, message, boolnews, rgpd) VALUES(:email, :sujet, :message, :boolnews, :rgpd)');
+		$req = $this->db->prepare('INSERT INTO contact (email, sujet, message, boolnews, rgpd, processed) VALUES(:email, :sujet, :message, :boolnews, :rgpd, 0)');
 		$add = $req->execute(array(
 			'email'=>$contact->getEmail(),
 			'sujet'=>$contact->getSujet(),
@@ -27,7 +30,10 @@ class ContactManager extends DbManager
 		return $add;
 	}
 
-	// fonction pour afficher les message envoyer avec le formulaire de contact
+	/**
+	* get all contact get by id order by id
+	* @return Contact
+	*/
 	public function getContacts()
 	{
 		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd FROM contact ORDER BY id');
@@ -47,14 +53,13 @@ class ContactManager extends DbManager
 	}
 
 	/**
-	*
-	*
-	*
+	* processed one contact get by id
+	* @return Contact
 	*/
-	public function deleteContact(Contact $contact)
+	public function processedContact(Contact $contact)
 	{
-		$req = $this->db->prepare('DELETE FROM contact WHERE id = :id');
-		$delete = $req->execute(['id'=>$contact->getId()]);
-		return $delete;
+		$req = $this->db->prepare('UPDATE contact SET processed = 1 WHERE id = ?');
+		$req->execute(array($contact->getId()));
+		return $contact;
 	}
 }

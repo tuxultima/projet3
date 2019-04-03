@@ -7,6 +7,9 @@ use App\Model\User;
 
 class NewChapterController
 {
+	/**
+  	* render the form new chapter page
+  	*/
 	public function newchapter()
 	{
 		$user = new UserManager();

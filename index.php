@@ -32,7 +32,7 @@ use App\Controller\AdminFolder\DeleteNewsletter\DeleteNewsletterController;
 use App\Controller\AddNewsletter\AddNewsletterController;
 use App\Controller\AddContact\AddContactController;
 use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
-use App\Controller\AdminFolder\DeleteContact\DeleteContactController;
+use App\Controller\AdminFolder\ProcessedContact\ProcessedContactController;
 use App\Controller\TryConnection\ResetPasswordController;
 use App\Model\User;
 use App\Model\Chapter;
@@ -346,13 +346,13 @@ elseif ($url === 'contactadmin') {
 	}
 }
 
-elseif ($url === 'deletecontact') {
+elseif ($url === 'processedcontact') {
 
 	if (isset($_SESSION['id']) && isset($_SESSION['nickname'])) {
 		if (isset($_GET['id']) && $_GET['id'] > 0) {
-			$deletecontactsure = new Contact(['id'=>$_GET['id']]);
-			$deletecontact = new DeleteContactController();
-			$deletecontact->deleteContact($deletecontactsure);
+			$processedcontactsure = new Contact(['id'=>$_GET['id']]);
+			$processedcontact = new ProcessedContactController();
+			$processedcontact->processedContact($processedcontactsure);
 		}
 	}
 	else {

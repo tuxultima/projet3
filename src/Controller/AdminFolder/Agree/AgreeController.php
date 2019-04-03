@@ -8,6 +8,9 @@ use App\Model\Comment;
 
 class AgreeController
 {
+	/**
+  	* agree comment by id
+  	*/
 	public function agree(Comment $commentId)
 	{
 		$agreed = new CommentManager();

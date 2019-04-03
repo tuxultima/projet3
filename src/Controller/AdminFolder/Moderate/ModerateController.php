@@ -10,6 +10,9 @@ use App\Model\Comment;
 
 class ModerateController
 {
+	/**
+  	* get comments reported
+  	*/
 	public function moderate()
 	{
 		$comments = new CommentManager();
