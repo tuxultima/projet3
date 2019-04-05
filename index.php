@@ -359,3 +359,25 @@ elseif ($url === 'processedcontact') {
 		header('Location: connexion');
 	}
 }
+
+elseif ($url === 'updatepassword') {
+	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['password'], $_POST['password2'] ) ) {
+		if (isset($_POST['password']) && isset($_POST['password2'])) {
+			if (!empty($_POST['password']) && !empty($_POST['password2'])) {
+				if ($_POST['password'] == $_POST['password2']) {
+					$password = hash('sha512', $_POST['password']);//password_hash($_POST['password'], PASSWORD_BCRYPT)
+					$changing = new ResetPasswordController();
+					$changing->updatePassword($password);
+				}
+			}
+			else {
+				header('Location: newsletters');
+			}
+		}
+	}	
+}
+
+elseif ($url === 'test') {
+	$home = new HomeController();
+	$home->send();
+}

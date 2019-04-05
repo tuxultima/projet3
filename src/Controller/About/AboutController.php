@@ -12,7 +12,7 @@ class AboutController
 	public function about()
 	{
 		$bruh = new Mail();
-		$result = $bruh->sendMail();
+		$bruh->sendMail();
 		require('src/View/about/about.php');
 	}
 }

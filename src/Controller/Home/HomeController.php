@@ -2,6 +2,8 @@
 
 namespace App\Controller\Home;
 
+use App\Service\Mail;
+
 class HomeController{
 
 	/**
@@ -9,5 +11,10 @@ class HomeController{
   	*/
 	public function home(){
 		require('src/View/home/home.php');
+	}
+	public function send(){
+		$mail = new Mail();
+		$mail->sendMail();
+		header('Location: accueil');
 	}
 }

@@ -78,7 +78,7 @@ public function getTitle(): ?string
 }
 
 /**
-* set title
+* set chapter title
 * @param string $title
 */
 public function setTitle($title): void
@@ -96,7 +96,7 @@ public function getContent(): ?string
 }
 
 /**
-  * set content
+  * set chapter content
   * @param string $content
   */
 public function setContent($content): void
@@ -131,10 +131,10 @@ public function getComments(): array
 	return $this->comments;
 }
 
-  /**
-  * set comments
-  * @param $comments[]
-  */
+/**
+* set comments
+* @param $comments[]
+*/
 public function setComments($comments)
 {
 	$this->comments = $comments;

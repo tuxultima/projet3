@@ -14,7 +14,9 @@ class UserManager extends DbManager
 		$this->db = self::connect();
 	}
 
-	// fonction pour que l'utilisateur se connecte
+	/**
+  	* connection admin account
+  	*/
 	public function getConnection(User $user)
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user WHERE nickname = ?');
@@ -42,7 +44,9 @@ class UserManager extends DbManager
 		
 	}
 
-	// fonction pour vérifier que l'utilisateur est bien connecter
+	/**
+  	* check connection admin account
+  	*/
 	public function getConnected()
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password FROM user ');
@@ -50,5 +54,14 @@ class UserManager extends DbManager
 		$result = $req->fetch(PDO::FETCH_ASSOC);
 		$user = new User($result);
 		return $user;
+	}
+
+	public function updatingPassword(User $user)
+	{
+		$req = $this->db->prepare('UPDATE user SET password = :password WHERE id = :id');
+		$upp = $req->execute(array(
+			'password'=>$user->getpassword(),
+		));
+		return $upp;
 	}
 }

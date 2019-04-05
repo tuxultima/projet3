@@ -9,8 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-class Mail {
-    public function sendMail()
+class ResetPasswordMail {
+    public function sendResetMail($token)
     {
         $mail = new PHPMailer(true);
         try {
@@ -33,7 +33,7 @@ class Mail {
             
             $mail->isHTML(true);
             $mail->Subject = 'Un nouveau chapitre est parut';
-            $mail->Body    = '<h1>Nouveau chapitre publié</h1>';
+            $mail->Body    = '<a href="http://localhost/projet3/changement-mdp&token=<?= $token; ?>">Changement de mot de passe</a>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
