@@ -381,3 +381,8 @@ elseif ($url === 'test') {
 	$home = new HomeController();
 	$home->send();
 }
+
+elseif ($url === 'nouveau-mot-de-passe') {
+	$newpassword = new ResetPasswordController();
+	$newpassword->changePasswordMailForm();
+}

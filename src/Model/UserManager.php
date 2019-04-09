@@ -64,4 +64,22 @@ class UserManager extends DbManager
 		));
 		return $upp;
 	}
+
+	public function getEmailAccount(User $user)
+	{
+		$req = $this->db->prepare('SELECT id, nickname, password, email, token, tokenAddDate FROM user WHERE email = ?');
+		$req->execute([$user->getEmail()]);
+		$result = $req->fetch(PDO::FETCH_ASSOC);
+		return $result;
+	}
+
+	public function updatingToken(User $user)
+	{
+		$req = $this->db->prepare('UPDATE user SET token = :token, tokenAddDate = NOW() WHERE id = :id');
+		$upp = $req->execute(array(
+			'token'=>$user->getToken(),
+		));
+		return $upp;
+	}
+
 }

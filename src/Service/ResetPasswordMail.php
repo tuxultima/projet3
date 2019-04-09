@@ -32,7 +32,7 @@ class ResetPasswordMail {
 
             
             $mail->isHTML(true);
-            $mail->Subject = 'Un nouveau chapitre est parut';
+            $mail->Subject = 'Vous avez demander a changer de mot de passe ?';
             $mail->Body    = '<a href="http://localhost/projet3/changement-mdp&token=<?= $token; ?>">Changement de mot de passe</a>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

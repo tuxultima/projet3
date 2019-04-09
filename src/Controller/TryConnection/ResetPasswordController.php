@@ -9,27 +9,29 @@ use App\Service\ResetPasswordMail;
 class ResetPasswordController
 {
 	public function changePasswordMailForm() {
-		require etc;
+		require ('src/View/newpassword/newpassword.php');
 	}
 
-	public function changePasswordMail($email) {
+	public function changePasswordMail(User $email) {
 		$userManager = new UserManager;
-		$user = $userManager->//fonction trouvez lutilisateur par son mail
-		if ($user) {
-		$token = uniqid('conf', true);
-		$user->setToken($token);
-		$userManager->//fonction pour ajouter le token en base de donnée et la date NOW pour datetoken
-		$reset = new ResetPasswordMail();
-		$reset->sendResetMail($token);
-		header('Location: changepasswordform');
-		}
-		else {
-			header('Location: changepasswordform');
-		}
+		$user = $userManager->getEmailAccount($email);
+		if ($user['email'] != null && $email->getEmail() == $user['email']) {
 		
+			if ($user) {
+			$token = uniqid('conf', true);
+			$user->setToken($token);
+			$userManager->updatingToken($user);
+			$reset = new ResetPasswordMail();
+			$reset->sendResetMail($token);
+			header('Location: nouveau-mot-de-passe');
+			}
+			else {
+				header('Location: nouveau-mot-de-passe');
+			}
+		}
 	}
 
-	public function changePasswordForm() {
+	public function changePasswordForm($token) {
 		//chercher le token en base de donnée
 		$tokenDate = $user->getDateToken()->diff(new \DateTime());
 		if ($user == null) {

@@ -2,10 +2,6 @@
 ob_start();
 ?>
 
-<?php if (isset($_SESSION['flash'])) : ?>
-<div><p class="text-white"><?= $_SESSION['flash']; ?></p></div>
-<?php unset($_SESSION['flash']); endif; ?>
-
 
 <div class="passwordformfront rounded mt-3 mb-3 border border-info">
  <form action="changepassword" class="m-2" method="post">	
