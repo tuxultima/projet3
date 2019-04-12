@@ -7,7 +7,7 @@ use App\Model\User;
 use App\Model\Chapter;
 use App\Model\ChapterManager;
 use App\Model\NewsletterManager;
-use App\Service\Mail;
+use App\Service\NewsletterMail;
 
 
 class AddChapterController
@@ -30,8 +30,8 @@ class AddChapterController
 		//$nManager = new NewsletterManager();
 		//$email = $nManager->getEmail();
 		//if ($email != false) {
-		//	$objMail = new Mail();
-		//	$objMail->sendMail($email, $ch);
+		//	$objMail = new NewsletterMail();
+		//	$objMail->sendMail($email, $title, $content);
 		//}
 
 		if ($_SESSION['id'] == $userid && $_SESSION['nickname'] == $usernickname) {

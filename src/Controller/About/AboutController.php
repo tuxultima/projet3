@@ -2,7 +2,6 @@
 
 namespace App\Controller\About;
 
-use App\Service\Mail;
 
 class AboutController
 {
@@ -11,8 +10,6 @@ class AboutController
   	*/
 	public function about()
 	{
-		$bruh = new Mail();
-		$bruh->sendMail();
 		require('src/View/about/about.php');
 	}
 }

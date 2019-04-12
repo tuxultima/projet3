@@ -2,7 +2,7 @@
 ob_start();
 ?>
 
-<form action="changepasswordmail" class="m-2" method="post">
+<form action="forgot-password-mail" class="m-2" method="post">
 	<div class="form-group">
 		<label class="text-white" for="email">E-mail :</label>
 	    <input name="email" type="text" class="form-control" id="email" required>

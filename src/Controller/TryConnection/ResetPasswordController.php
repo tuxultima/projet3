@@ -12,27 +12,28 @@ class ResetPasswordController
 		require ('src/View/newpassword/newpassword.php');
 	}
 
-	public function changePasswordMail(User $email) {
+	public function changePasswordMail(User $user) {
 		$userManager = new UserManager;
-		$user = $userManager->getEmailAccount($email);
-		if ($user['email'] != null && $email->getEmail() == $user['email']) {
+		$getUser = $userManager->getEmailAccount($user);
+		if ($getUser->getEmail() != null && $user->getEmail() == $getUser->getEmail()) {
 		
-			if ($user) {
+			if ($getUser) {
 			$token = uniqid('conf', true);
-			$user->setToken($token);
-			$userManager->updatingToken($user);
+			$getUser->setPasswordToken($token);
+			$userManager->addToken($getUser);
 			$reset = new ResetPasswordMail();
 			$reset->sendResetMail($token);
-			header('Location: nouveau-mot-de-passe');
+			header('Location: mot-de-passe-oublie');
 			}
 			else {
-				header('Location: nouveau-mot-de-passe');
+				header('Location: mot-de-passe-oublie');
 			}
 		}
 	}
 
 	public function changePasswordForm($token) {
-		//chercher le token en base de donnée
+		$userManager = new UserManager;
+		$user = $userManager->getTokenAccount($token);
 		$tokenDate = $user->getDateToken()->diff(new \DateTime());
 		if ($user == null) {
 			echo "acces interdit";
@@ -40,11 +41,12 @@ class ResetPasswordController
 		elseif ($tokenDate->i > 30) {
 			echo "acces interdit";
 		}
-		require ('src/View/changepasswordform/changepasswordform.php');
+		require ('src/View/adminfolder/changepasswordform/changepasswordform.php');
 	}
 
 	public function updatePassword($password, $token) {
-		//chercher le token en base de donnée
+		$userManager = new UserManager;
+		$user = $userManager->getTokenAccount($token);
 		$tokenDate = $user->getDateToken()->diff(new \DateTime());
 		if ($user == null) {
 			echo "acces interdit";
@@ -52,9 +54,11 @@ class ResetPasswordController
 		elseif ($tokenDate->i > 30) {
 			echo "acces interdit";
 		}
-		$password = new User();
-		$password->setPassword($password);
+		$passwordsafe = password_hash($password, PASSWORD_BCRYPT);
+		$passwordsafe = new User();
+		$passwordsafe->setPassword($passwordsafe);
 		$userManager = new UserManager();
-		$userManager->updatingPassword($password);
+		$userManager->updatingPassword($passwordsafe);
+		header('Location: connexion');
 	}
 }

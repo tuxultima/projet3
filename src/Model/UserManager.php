@@ -67,19 +67,33 @@ class UserManager extends DbManager
 
 	public function getEmailAccount(User $user)
 	{
-		$req = $this->db->prepare('SELECT id, nickname, password, email, token, tokenAddDate FROM user WHERE email = ?');
-		$req->execute([$user->getEmail()]);
-		$result = $req->fetch(PDO::FETCH_ASSOC);
-		return $result;
+		$req = $this->db->prepare('SELECT id, email FROM user WHERE email = :email');
+		$req->execute(['email' => $user->getEmail()]);
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($result as $data) {
+			$userCheck = new User();
+			$userCheck->setEmail($data['email']);
+			$userCheck->setId($data['id']);
+		}
+		return $userCheck;
 	}
 
-	public function updatingToken(User $user)
+	public function addToken(User $user)
 	{
-		$req = $this->db->prepare('UPDATE user SET token = :token, tokenAddDate = NOW() WHERE id = :id');
+		$req = $this->db->prepare('UPDATE user SET password_token = :password_token, tokenAddDate = NOW() WHERE id = :id');
 		$upp = $req->execute(array(
-			'token'=>$user->getToken(),
+			'password_token'=>$user->getPasswordToken(),
+			'id'=>$user->getId()
 		));
 		return $upp;
+	}
+
+	public function getTokenAccount(User $user)
+	{
+		$req = $this->db->prepare('SELECT id, nickname, password, email, token, tokenAddDate FROM user WHERE token = ?');
+		$req->execute([$user->getToken()]);
+		$result = $req->fetch(PDO::FETCH_ASSOC);
+		return $result;
 	}
 
 }

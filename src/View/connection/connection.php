@@ -11,7 +11,7 @@ ob_start();
 		<input type="submit" value="Valider"/>
 	</p>
 </form>
-<a href="nouveau-mot-de-passe">Mot de passe oublié ?</a>
+<a href="mot-de-passe-oublie">Mot de passe oublié ?</a>
 
 <?php
 $content = ob_get_clean();

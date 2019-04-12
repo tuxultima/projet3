@@ -5,6 +5,7 @@ namespace App\Controller\AddContact;
 
 use App\Model\Contact;
 use App\Model\ContactManager;
+use App\Service\ContactMail;
 
 
 class AddContactController
@@ -22,6 +23,8 @@ class AddContactController
 		$cont->setRgpd($rgpd);
 		$contactManager = new ContactManager();
 		$contactManager->addContact($cont);
+		$send = new ContactMail();
+		$send->sendMail($email, $sujet, $message, $boolnews);
 		$_SESSION['flash'] = 'Votre message a bien été envoyé.';
 		$flash = $_SESSION['flash'];
 		header('Location: contact');

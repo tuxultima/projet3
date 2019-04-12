@@ -4,7 +4,7 @@ ob_start();
 
 
 <div class="passwordformfront rounded mt-3 mb-3 border border-info">
- <form action="changepassword" class="m-2" method="post">	
+ <form action="updatepassword" class="m-2" method="post">	
     <div class="form-group">
         <label class="text-white" for="password">Votre nouveau mot de passe :</label>
         <input name="password" type="text" class="form-control" id="password" required>

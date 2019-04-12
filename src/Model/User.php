@@ -24,7 +24,7 @@ class User
   /**
   * @var string
   */
-  private $token;
+  private $password_token;
   /**
   * @var \Datetime
   */
@@ -129,21 +129,21 @@ class User
   }
 
   /**
-  * get user token
+  * get user password_token
   * @return string
   */
-  public function getToken(): ?string
+  public function getPasswordToken(): ?string
   {
-    return $this->token;
+    return $this->password_token;
   }
 
   /**
   * set token
-  * @param string $token
+  * @param string $password_token
   */
-  public function setToken($token): void
+  public function setPasswordToken(string $password_token): void
   {
-    $this->token = $token;
+    $this->password_token = $password_token;
   }
 
   /**

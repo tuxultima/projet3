@@ -93,8 +93,6 @@ elseif ($url === 'connexion') {
 }
 
 elseif ($url === 'tryconnection') {
-	#$tryconnection = new TryConnectionController(); 
-	#$tryconnection->tryconnection($_POST['nickname']);
 	if (isset($_POST['nickname']) && isset($_POST['password'])) {
 		$user = new User(['nickname' => $_POST['nickname'], 'password'=> $_POST['password'] ]);
 		$tryconnection = new TryConnectionController();
@@ -108,8 +106,19 @@ elseif ($url === 'mot-de-passe-oublie') {
 }
 
 elseif ($url === 'forgot-password-mail') {
-	$password = new ResetPasswordController();
-	$password->changePasswordMail();
+	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['email'] ) ) {
+		if (isset($_POST['email'])) {
+			if (!empty($_POST['email'])) {
+				$user = new User(['email' => $_POST['email'] ]);
+				$password = new ResetPasswordController();
+				$password->changePasswordMail($user);
+			}
+			else {
+				header('Location: connexion');
+			}
+		}
+	}
+	
 }
 
 elseif ($url === 'changement-de-mot-de-passe') {
@@ -365,24 +374,16 @@ elseif ($url === 'updatepassword') {
 		if (isset($_POST['password']) && isset($_POST['password2'])) {
 			if (!empty($_POST['password']) && !empty($_POST['password2'])) {
 				if ($_POST['password'] == $_POST['password2']) {
-					$password = hash('sha512', $_POST['password']);//password_hash($_POST['password'], PASSWORD_BCRYPT)
+					$password = $_POST['password'];
+					$token = $_GET['token'];
 					$changing = new ResetPasswordController();
 					$changing->updatePassword($password);
 				}
 			}
 			else {
-				header('Location: newsletters');
+				header('Location: connexion');
 			}
 		}
 	}	
 }
 
-elseif ($url === 'test') {
-	$home = new HomeController();
-	$home->send();
-}
-
-elseif ($url === 'nouveau-mot-de-passe') {
-	$newpassword = new ResetPasswordController();
-	$newpassword->changePasswordMailForm();
-}
