@@ -27,12 +27,14 @@ class AddChapterController
 		$userid = $result->getId();
 		$usernickname = $result->getNickname();
 
-		//$nManager = new NewsletterManager();
-		//$email = $nManager->getEmail();
-		//if ($email != false) {
-		//	$objMail = new NewsletterMail();
-		//	$objMail->sendMail($email, $title, $content);
-		//}
+		$nManager = new NewsletterManager();
+		$email = $nManager->getOtherEmail();
+		
+		if ($email != false) {
+			$objMail = new NewsletterMail();
+			$objMail->sendMail($email, $title, $content);
+			var_dump($objMail);die;
+		}
 
 		if ($_SESSION['id'] == $userid && $_SESSION['nickname'] == $usernickname) {
 		header('Location: chapitresadmin');

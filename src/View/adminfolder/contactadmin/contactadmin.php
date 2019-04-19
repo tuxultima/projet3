@@ -5,24 +5,46 @@ ob_start();
 foreach ($results as $data)
 {
 ?>
-<div class="contactadmin rounded mt-3 mb-3 ">
-	
-	<p>
-		<p><?= $data->getEmail(); ?></p>
-	</p>
+<?php if ($data->getProcessed() == false) {
+?>
+	<div class="contactadmin rounded mt-3 mb-3 ">
+		
+		<p>
+			<p><?= $data->getEmail(); ?></p>
+		</p>
 
-	<p>
-		<?= $data->getSujet(); ?>
-	</p>
+		<p>
+			<?= $data->getSujet(); ?>
+		</p>
 
-	
-	<p><?= $data->getMessage(); ?></p>
-	
+		
+		<p><?= $data->getMessage(); ?></p>
+		
 
-	<p><?= $data->getBoolnews(); ?><a class="float-right" href="deletecontact&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir supprimer ce message ?')">supprimer</a></p>
+		<p><?= $data->getBoolnews(); ?><a class="float-right" href="processedcontact&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir mettre ce message en lu et traité ?')">lu et traité</a></p>
+	</div>
+	<?php
+	} 
+	else {
+		?>
+		<div class="contactadmin2 rounded mt-3 mb-3 ">
+			
+			<p>
+				<p><?= $data->getEmail(); ?></p>
+			</p>
+
+			<p>
+				<?= $data->getSujet(); ?>
+			</p>
+
+			
+			<p><?= $data->getMessage(); ?></p>
+		</div>
+	<?php
+	}
+	?>
 
 
-</div>
 <?php
 }
 

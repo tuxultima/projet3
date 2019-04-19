@@ -28,7 +28,7 @@ class User
   /**
   * @var \Datetime
   */
-  private $tokenAddDate;
+  private $tokenadddate;
 
 
 

@@ -36,7 +36,7 @@ class ContactManager extends DbManager
 	*/
 	public function getContacts()
 	{
-		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd FROM contact ORDER BY id');
+		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact ORDER BY id');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		if ($result) {
 			
@@ -61,5 +61,35 @@ class ContactManager extends DbManager
 		$req = $this->db->prepare('UPDATE contact SET processed = 1 WHERE id = ?');
 		$req->execute(array($contact->getId()));
 		return $contact;
+	}
+
+	/**
+	* get all contact get by id order by id with limit of 3 contacts
+	* @return Contact
+	*/
+	public function getContactsLimit()
+	{
+		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact WHERE processed = 0 ORDER BY id LIMIT 0,3');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		if ($result) {
+			
+		
+			$contact = [];
+			foreach ($result as $data )
+			{
+				$objcontact = new Contact($data);
+				$contact[] = $objcontact;
+			}
+			return $contact;
+		}
+		return false;
+	}
+
+	public function getContactNumber()
+	{
+		$req = $this->db->query('SELECT COUNT(processed = 0) AS newMsj FROM contact');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
 	}
 }

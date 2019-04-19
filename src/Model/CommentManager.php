@@ -86,7 +86,7 @@ class CommentManager extends DbManager
 	*/
 	public function agree(Comment $commentId)
 	{
-		$req = $this->db->prepare('UPDATE comment SET reported = 0 WHERE id = ?');
+		$req = $this->db->prepare('UPDATE comment SET moderate = 0, reported = 0 WHERE id = ?');
 		$req->execute(array($commentId->getId()));
 		return $commentId;
 	}
@@ -121,5 +121,22 @@ class CommentManager extends DbManager
 			'chapter_id'=>$comment->getChapter_Id()
 		));
 		return $add;
+	}
+
+	/**
+	* get all comments order by dateUpload with limit of 3 comments
+	* @return Comments
+	*/
+	public function getCommentLimit()
+	{
+		$req = $this->db->query('SELECT id, nickname, comment, dateUpload, chapter_id, reported, moderate FROM comment ORDER BY dateUpload LIMIT 0,3');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$comments = [];
+		foreach ($result as $data) 
+		{
+			$objComments = new Comment($data);
+			$comments[] = $objComments;
+		}
+		return $comments;
 	}
 }

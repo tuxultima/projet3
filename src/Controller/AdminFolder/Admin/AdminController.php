@@ -4,6 +4,11 @@ namespace App\Controller\AdminFolder\Admin;
 
 use App\Model\UserManager;
 use App\Model\User;
+use App\Model\CommentManager;
+use App\Model\Comment;
+use App\Model\ContactManager;
+use App\Model\Contact;
+
 
 class AdminController
 {
@@ -12,6 +17,12 @@ class AdminController
   	*/
 	public function admin()
 	{
+		$comments = new CommentManager();
+		$resultsCom = $comments->getCommentLimit();
+		$contacts = new ContactManager();
+		$resultsContact = $contacts->getContactsLimit();
+		$contactNumber = new ContactManager();
+		$resultsContactNumber = $contactNumber->getContactNumber();
 		$user = new UserManager();
 		$result = $user->getConnected();
 		$userid = $result->getId();

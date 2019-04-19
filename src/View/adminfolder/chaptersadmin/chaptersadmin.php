@@ -14,10 +14,10 @@ foreach ($results as $data)
 		<?= $data->getContent(); ?>
 	</p>
 	
-	<em>crée le <?= $data->getDateUpload(); ?></em>
+	<em>crée le <?= $data->getDateUpload(); ?>
 
-	<p class="float-right "><a href="deletechapitre&id=<?= $data->getId(); ?>">supprimer</a></p>
-	<p class="float-right "><a href="updatechapitre&id=<?= $data->getId(); ?>">modifier</a></p>
+	<div class="text-right "><a href="deletechapitre&id=<?= $data->getId(); ?>">supprimer </a>
+	<a href="updatechapitre&id=<?= $data->getId(); ?>">modifier</a></div></em>
 </div>
 <?php
 }

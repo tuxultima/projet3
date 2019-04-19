@@ -2,7 +2,13 @@
 ob_start();
 ?>
 
-<h1 class="text-white">accueil</h1>
+<h1 class="text-white">Accueil</h1>
+
+<p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ligula elementum, dapibus orci sed, volutpat lacus. In hac habitasse platea dictumst. Maecenas velit arcu, pretium vel efficitur non, imperdiet in dolor. Nullam consectetur  vestibulum ante dignissim eu. Ut est leo, aliquet vitae sapien sit amet, viverra ultrices magna. Integer vel pellentesque massa. Aenean id consectetur nibh, id lacinia purus. Phasellus cursus a nunc in ullamcorper. In hac habitasse platea dictumst. </p>
+
+<div class="border border-info">
+<img src="../../projet3/public/image/alaska_picture.jpeg" class="img-fluid" alt="Responsive image">
+</div>
 
 
 <?php 

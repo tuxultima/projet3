@@ -62,4 +62,22 @@ class NewsletterManager extends DbManager
 		return $add;
 	}
 
+	public function getOtherEmail()
+	{
+		$req = $this->db->query('SELECT email FROM newsletter ORDER BY id');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		if ($result) {
+			
+		
+			$newsletter = [];
+			foreach ($result as $data )
+			{
+				$objNewsletter = new Newsletter($data);
+				$newsletter[] = $objNewsletter;
+			}
+			return $newsletter;
+		}
+		return false;
+	}
+
 }

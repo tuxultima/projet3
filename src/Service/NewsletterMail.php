@@ -27,15 +27,18 @@ class NewsletterMail {
 
             
             $mail->setFrom('billet.alaska@gmail.com', 'Mailer');
-            $mail->addAddress('$email');
+            $mail->addAddress($email);
+            var_dump($email);die;
+
+
 
 
             
             $mail->isHTML(true);
-            $mail->Subject = 'Un nouveu chapitre est sorti';
-            $mail->Body    = '<h2> . ' $title ' . </h2> <br>
+            $mail->Subject = 'Un nouveau chapitre est sorti';
+            $mail->Body    = '<h2>  ' . $title . '  </h2> <br>
             <br>
-            <p> . ' substr($content, 0,250); ' . </p>';
+            <p>  '  . substr($content, 0,250);  '  </p>';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

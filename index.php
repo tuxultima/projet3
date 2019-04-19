@@ -121,9 +121,12 @@ elseif ($url === 'forgot-password-mail') {
 	
 }
 
-elseif ($url === 'changement-de-mot-de-passe') {
+elseif ($url === 'changement-mdp') {
+	if (isset($_GET['token'])) {
+	$tokenUser = new User(['password_token'=>$_GET['token']]);
 	$password = new ResetPasswordController();
-	$password->changePasswordForm();
+	$password->changePasswordForm($tokenUser);
+	}
 }
 
 elseif ($url === 'update-password') {

@@ -29,6 +29,10 @@ class Contact
   * @var int
   */
   private $rgpd;
+    /**
+  * @var int
+  */
+  private $processed;
 
 
 
@@ -160,6 +164,24 @@ public function hydrate(array $values)
   public function setRgpd($rgpd)
   {
     $this->rgpd = $rgpd;
+  }
+
+    /**
+  * get contact processed
+  * @return int
+  */
+  public function getProcessed()
+  {
+    return $this->processed;
+  }
+
+  /**
+  * set contact processed
+  * @param int $processed
+  */
+  public function setProcessed($processed)
+  {
+    $this->processed = $processed;
   }
 
 }
