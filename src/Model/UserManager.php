@@ -93,7 +93,10 @@ class UserManager extends DbManager
 		$req = $this->db->prepare('SELECT id, nickname, password, email, password_token, tokenAddDate FROM user WHERE password_token = ?');
 		$req->execute([$user->getPasswordToken()]);
 		$result = $req->fetch(PDO::FETCH_ASSOC);
-		return $result;
+		$userCheck = new User();
+		$userCheck->setPasswordToken($result['password_token']);
+		$userCheck->setTokenAddDate($result['tokenAddDate']);
+		return $userCheck;
 	}
 
 }

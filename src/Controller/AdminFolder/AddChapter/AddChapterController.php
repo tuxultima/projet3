@@ -33,7 +33,7 @@ class AddChapterController
 		if ($email != false) {
 			$objMail = new NewsletterMail();
 			$objMail->sendMail($email, $title, $content);
-			var_dump($objMail);die;
+			
 		}
 
 		if ($_SESSION['id'] == $userid && $_SESSION['nickname'] == $usernickname) {

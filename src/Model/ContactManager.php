@@ -88,7 +88,7 @@ class ContactManager extends DbManager
 	public function getContactNumber()
 	{
 		$req = $this->db->query('SELECT COUNT(processed = 0) AS newMsj FROM contact');
-		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$result = $req->fetchColumn();
 
 		return $result;
 	}

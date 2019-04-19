@@ -34,8 +34,9 @@ class ResetPasswordController
 	public function changePasswordForm($token) {
 		$userManager = new UserManager;
 		$user = $userManager->getTokenAccount($token);
-		var_dump($user);die;
-		$tokenDate = $user->getTokenAddDate()->diff(new \DateTime());
+		$newDateTime = new \DateTime(date('Y-m-d H:i'));
+		$tokenDate = $user->getTokenAddDate()->diff($newDateTime);
+		var_dump($tokenDate);die;
 		if ($user == null) {
 			echo "acces interdit";
 		}

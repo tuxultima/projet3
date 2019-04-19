@@ -30,7 +30,7 @@ ob_start();
     </div>
     <div class="col-sm">
       <div class="contactadmin rounded mt-3 mb-3 p-1">
-     		<p>Vous avez <? echo $resultsContactNumber['newMsj']; ?> messages non lus et traités :</p>
+     		<p>Vous avez <?=  $resultsContactNumber; ?> messages non lus et traités :</p>
       </div>
       	<?php
 			foreach ($resultsContact as $data)

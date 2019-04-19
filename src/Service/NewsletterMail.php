@@ -27,8 +27,11 @@ class NewsletterMail {
 
             
             $mail->setFrom('billet.alaska@gmail.com', 'Mailer');
-            $mail->addAddress($email);
-            var_dump($email);die;
+            foreach ($email as $e) {
+                $mail->addAddress($e->getEmail());
+            }
+            
+            
 
 
 
