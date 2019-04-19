@@ -6,6 +6,9 @@ use App\Model\ChapterManager;
 
 class AllChaptersController
 {
+	/**
+  	* get chapters by id
+  	*/
 	public function allchapters()
 	{
 		$chapter = new ChapterManager();

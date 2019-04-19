@@ -5,10 +5,31 @@ namespace App\Model;
 
 class User
 {
-
+  /**
+  * @var int
+  */
 	private $id;
+  /**
+  * @var string
+  */
 	private $nickname;
+  /**
+  * @var string
+  */
 	private $password;
+  /**
+  * @var string
+  */
+  private $email;
+  /**
+  * @var string
+  */
+  private $password_token;
+  /**
+  * @var \Datetime
+  */
+  private $tokenadddate;
+
 
 
 
@@ -39,6 +60,10 @@ class User
      return $this;
  	}
 
+  /**
+  * get user id
+  * @return int
+  */
  	public function getId(): ?int
  	{
  		return $this->id;
@@ -49,23 +74,93 @@ class User
  		$this->id = $id;
  	}
 
+  /**
+  * get user nickname
+  * @return string
+  */
  	public function getNickname(): ?string
  	{
  		return $this->nickname;
  	}
 
+  /**
+  * set nickname
+  * @param string $nickname
+  */
  	public function setNickname($nickname): void
  	{
  		$this->nickname = $nickname;
  	}
 
+  /**
+  * get user password
+  * @return string
+  */
  	public function getPassword(): ?string
  	{
  		return $this->password;
  	}
 
+  /**
+  * set password
+  * @param string $password
+  */
  	public function setPassword($password): void
  	{
  		$this->password = $password;
  	}
+
+  /**
+  * get user email
+  * @return string
+  */
+  public function getEmail(): ?string
+  {
+    return $this->email;
+  }
+
+  /**
+  * set email
+  * @param string $email
+  */
+  public function setEmail($email): void
+  {
+    $this->email = $email;
+  }
+
+  /**
+  * get user password_token
+  * @return string
+  */
+  public function getPasswordToken(): ?string
+  {
+    return $this->password_token;
+  }
+
+  /**
+  * set token
+  * @param string $password_token
+  */
+  public function setPasswordToken(string $password_token): void
+  {
+    $this->password_token = $password_token;
+  }
+
+  /**
+  * get user \Datetime
+  * @return \Datetime
+  */
+  public function getTokenAddDate()
+  {
+    return $this->tokenadddate;
+  }
+
+  /**
+  * set user \Datetime
+  * @param $tokenadddate
+  */
+  public function setTokenAddDate($tokenadddate)
+  {
+    $this->tokenadddate = $tokenadddate;
+  }
 }

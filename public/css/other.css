@@ -44,3 +44,49 @@
 .comment {
 	background-color: #2c2c2c;
 }
+
+.newsletteradmin {
+	background-color: #6fd0d6;
+}
+
+.newsletterfront {
+	background-color: #30536d
+}
+
+.contactfront {
+	background-color: #30536d
+}
+
+.contactadmin {
+	background-color: #6fd0d6;
+}
+
+.contactadmin2 {
+	background-color: #adccce;
+}
+
+.aboutfront {
+	background-color: #347285;
+}
+
+.a2 {
+	color: #ffffff;
+  text-decoration: none;
+  font-style: italic;
+  background-color: transparent;
+}
+
+.a2:hover {
+	color: #c8c8c8;
+  text-decoration: underline;
+}
+
+.hrstyle {
+	border: 1px solid white;
+}
+
+.sticky-finger {
+	
+	right: 10px;
+	
+}

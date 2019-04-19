@@ -8,6 +8,9 @@ use App\Model\Comment;
 
 class ReportController
 {
+	/**
+  	* report comment by id
+  	*/
 	public function report(Comment $commentId, $chapterId)
 	{
 		$reported = new CommentManager();

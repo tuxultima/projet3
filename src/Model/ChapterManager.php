@@ -13,6 +13,10 @@ class ChapterManager extends DbManager
 		$this->db = self::connect();
 	}
 
+	/**
+	* get one chapter by id with and his comments
+	* @return Chapter
+	*/
 	public function getChapterOnly(Chapter $chapter)
 	{
 		$req = $this->db->prepare('SELECT c.id, c.title, c.content, c.dateUpload, co.id AS com_id, co.nickname, co.comment, co.dateUpload AS com_date, co.chapter_id, co.reported, co.moderate FROM chapter c LEFT JOIN comment co ON co.chapter_id = c.id WHERE c.id = ?');
@@ -39,20 +43,13 @@ class ChapterManager extends DbManager
 		return $chapter;
 	}
 
-	public function getChapterNan($postId)
-	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter where id = ?');
-		$data = $req->fetchAll(PDO::FETCH_ASSOC);
-		$req->execute(array($postId));
-		$chapterOnly = [];
-		$objChapter = new Chapter($data);
-		$chapterOnly[] = $objChapter;
-		return $chapterOnly;
-	}
-
+	/**
+	* get all chapters order by dateUpload
+	* @return Chapter
+	*/
 	public function getChapters()
 	{
-		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y à %Hh%imin%ss") AS dateUpload FROM chapter ORDER BY dateUpload');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY dateUpload');
 		$results = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters = [];
 		foreach ($results as $data) 
@@ -63,15 +60,60 @@ class ChapterManager extends DbManager
 		return $chapters;
 	}
 
+	/**
+	* add one chapter
+	* @return Add
+	*/
 	public function addchapter(Chapter $chapter)
 	{
 		$req = $this->db->prepare('INSERT INTO chapter (title, content, dateUpload) VALUES(:title, :content, NOW())');
 		$add = $req->execute(array(
 			'title'=>$chapter->getTitle(),
-			'content'=>$content->getContent()
+			'content'=>$chapter->getContent()
 		));
 		return $add;
 	}
 
+	/**
+	* take content of one chapter get by id
+	* @return ChapterId
+	*/
+	public function updatechapter(Chapter $chapterId)
+	{
+		$req = $this->db->prepare('SELECT id, title, content, dateUpload FROM chapter where id = ?');
+		$req->execute(array($chapterId->getId()));
+		$data = $req->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($data as $value) {
+			$chapterId->setTitle($value['title']);
+			$chapterId->setContent($value['content']);
+			$chapterId->setDateUpload($value['dateUpload']);
+		}
+		return $chapterId;
+	}
 
+	/**
+	* update one chapter get by id
+	* @return upp
+	*/
+	public function updatingchapter(Chapter $chapterId)
+	{
+		$req = $this->db->prepare('UPDATE chapter SET title = :title, content = :content WHERE id = :id');
+		$upp = $req->execute(array(
+			'id'=>$chapterId->getId(),
+			'title'=>$chapterId->getTitle(),
+			'content'=>$chapterId->getContent()
+		));
+		return $upp;
+	}
+
+	/**
+	* delete one chapter get by id
+	* @return delete
+	*/
+	public function deleteChapter(Chapter $chapter)
+	{
+		$req = $this->db->prepare('DELETE FROM chapter WHERE id = :id');
+		$delete = $req->execute(['id'=>$chapter->getId()]);
+		return $delete;
+	}
 }

@@ -9,6 +9,9 @@ use App\Model\Chapter;
 
 class ChapterController 
 {
+	/**
+  	* get one chapter by id
+  	*/
 	public function thechapter(Chapter $chapter)
 	{
 		$chapteronly = new ChapterManager();

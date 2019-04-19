@@ -13,10 +13,13 @@
       <nav class="navbar rounded-bottom  navbar-expand-sm bg-primary navbar-dark">
       	<div class="container-fluid">
 	      	<ul class="nav navbar-nav">
+	      		<li class="nav-item"><a class="nav-link text-white" href="administration">Accueil</a></li>
 	      		<li class="nav-item"><a class="nav-link text-white" href="nouveauchapitre">Nouveau chapitre</a></li>
 				<li class="nav-item"><a class="nav-link text-white" href="chapitresadmin">Chapitres</a></li>
 	      		<li class="nav-item"><a class="nav-link text-white" href="commentairesadmin">Commentaires</a></li>
-	      		<li class="nav-item"><a class="nav-link text-white" href="moderation">Modération</a></li> 		
+	      		<li class="nav-item"><a class="nav-link text-white" href="moderation">Modération</a></li> 		<li class="nav-item"><a class="nav-link text-white" href="commentairemoderer">Commentaires modérer</a></li>
+	      		<li class="nav-item"><a class="nav-link text-white" href="newsletteradmin">Newsletter</a></li>
+	      		<li class="nav-item"><a class="nav-link text-white" href="contactadmin">Contact</a></li>
 	      	</ul>
 	    </div>
 	  </nav>
