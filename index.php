@@ -129,9 +129,22 @@ elseif ($url === 'changement-mdp') {
 	}
 }
 
-elseif ($url === 'update-password') {
-	$password = new ResetPasswordController();
-	$password->updatePassword();
+elseif ($url === 'updatepassword') {
+	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['password'], $_POST['password2'] ) ) {
+		if (isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['token'])) {
+			if (!empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['token'])) {
+				if ($_POST['password'] == $_POST['password2']) {
+					$passwordUser = new User(['password'=>$_POST['password']]);
+					$tokenUser = new User(['password_token'=>$_POST['token']]);
+					$changing = new ResetPasswordController();
+					$changing->updatePassword($password, $tokenUser);
+				}
+			}
+			else {
+				header('Location: connexion');
+			}
+		}
+	}	
 }
 
 elseif ($url === 'administration') {
@@ -370,23 +383,5 @@ elseif ($url === 'processedcontact') {
 	else {
 		header('Location: connexion');
 	}
-}
-
-elseif ($url === 'updatepassword') {
-	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['password'], $_POST['password2'] ) ) {
-		if (isset($_POST['password']) && isset($_POST['password2'])) {
-			if (!empty($_POST['password']) && !empty($_POST['password2'])) {
-				if ($_POST['password'] == $_POST['password2']) {
-					$password = $_POST['password'];
-					$token = $_GET['token'];
-					$changing = new ResetPasswordController();
-					$changing->updatePassword($password);
-				}
-			}
-			else {
-				header('Location: connexion');
-			}
-		}
-	}	
 }
 

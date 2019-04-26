@@ -2,6 +2,9 @@
 ob_start();
 ?>
 <?php
+if ($results) {
+
+
 foreach ($results as $data)
 {
 ?>
@@ -13,7 +16,10 @@ foreach ($results as $data)
 </div>
 <?php
 }
-
+}
+else {
+	echo "Vous n'avez pas encore d'email inscrit à la newsletter";
+}
 ?>
 
 <?php

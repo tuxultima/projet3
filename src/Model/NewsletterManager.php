@@ -14,7 +14,6 @@ class NewsletterManager extends DbManager
 		$this->db = self::connect();
 	}
 	
-	// fonction pour afficher les email ajouter à la newsletter
 	/**
 	* get all email order by id
 	* @return newsletter
@@ -62,6 +61,10 @@ class NewsletterManager extends DbManager
 		return $add;
 	}
 
+	/**
+	* get all email order by id
+	* @return newsletter
+	*/
 	public function getOtherEmail()
 	{
 		$req = $this->db->query('SELECT email FROM newsletter ORDER BY id');

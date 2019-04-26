@@ -124,7 +124,7 @@ class CommentManager extends DbManager
 	}
 
 	/**
-	* get all comments order by dateUpload with limit of 3 comments
+	* get comments order by dateUpload with limit of 3 comments
 	* @return Comments
 	*/
 	public function getCommentLimit()
