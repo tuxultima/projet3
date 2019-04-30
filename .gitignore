@@ -1,2 +1,4 @@
 /vendor/
 vendor/
+/src/Model/DbManager.php
+src/Model/DbManager.php

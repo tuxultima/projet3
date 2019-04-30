@@ -45,10 +45,10 @@ class ResetPasswordController
 		require ('src/View/adminfolder/changepasswordform/changepasswordform.php');
 	}
 
-	public function updatePassword($password, $token) {
+	public function updatePassword(User $user) {
 		$userManager = new UserManager;
-		$user = $userManager->getTokenAccount($token);
-		$date = new \DateTime($user->getTokenAddDate());
+		$checkUser = $userManager->getTokenAccount($user);
+		$date = new \DateTime($checkUser->getTokenAddDate());
 		$tokenDate = $date->diff(new \DateTime());
 		if ($user == null) {
 			echo "acces interdit";
@@ -56,11 +56,11 @@ class ResetPasswordController
 		elseif ($tokenDate->i > 30) {
 			echo "acces interdit";
 		}
-		$passwordsafe = password_hash($password, PASSWORD_BCRYPT);
-		$passwordsafe = new User();
-		$passwordsafe->setPassword($passwordsafe);
-		$userManager = new UserManager();
-		$userManager->updatingPassword($passwordsafe);
+		$passwordsafe = password_hash($user->getPassword(), PASSWORD_BCRYPT);
+	
+		$checkUser->setPassword($passwordsafe);
+		
+		$userManager->updatingPassword($checkUser);
 		header('Location: connexion');
 	}
 }

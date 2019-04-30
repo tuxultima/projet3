@@ -37,6 +37,14 @@
 	background-color: #96ADFC;
 }
 
+.commentadmintitle {
+	border-bottom: solid;
+}
+
+.contactadmintitle {
+	border-bottom: solid;
+}
+
 .greymode {
 	background-color: #f0f0f0;
 }
@@ -88,4 +96,20 @@
 .hrcolor {
 	color: #ffffff;
 	 background-color: #ffffff;
+}
+
+.test {
+	position: relative;
+
+}
+
+.test-text {
+	z-index: 10;
+	position: absolute;
+	top: 5%;
+	width: 90%;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
 }

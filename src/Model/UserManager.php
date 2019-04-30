@@ -61,9 +61,10 @@ class UserManager extends DbManager
   	*/
 	public function updatingPassword(User $user)
 	{
-		$req = $this->db->prepare('UPDATE user SET password = :password WHERE id = :id');
+		$req = $this->db->prepare('UPDATE user SET password = :password, password_token = null, tokenAddDate = null WHERE password_token = :password_token');
 		$upp = $req->execute(array(
-			'password'=>$user->getpassword(),
+			'password'=>$user->getPassword(),
+			'password_token'=>$user->getPasswordToken()
 		));
 		return $upp;
 	}

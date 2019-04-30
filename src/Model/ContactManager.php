@@ -91,7 +91,7 @@ class ContactManager extends DbManager
 	*/
 	public function getContactNumber()
 	{
-		$req = $this->db->query('SELECT COUNT(processed = 0) AS newMsj FROM contact');
+		$req = $this->db->query('SELECT COUNT(*) FROM contact WHERE processed = 0');
 		$result = $req->fetchColumn();
 
 		return $result;

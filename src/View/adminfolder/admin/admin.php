@@ -5,8 +5,8 @@ ob_start();
 <div class="container">
   <div class="row">
     <div class="col-sm">
-     	<div class="commentadmin rounded mt-3 mb-3 p-1">
-     		<p>Vos derniers commentaires recu :</p>
+     	<div class="commentadmintitle text-center mt-3 mb-3 p-1">
+     		<strong>Vos derniers commentaires recu :</strong>
      	</div>
      	<?php
      	foreach ($resultsCom as $data)
@@ -29,8 +29,8 @@ ob_start();
 		?>
     </div>
     <div class="col-sm">
-      <div class="contactadmin rounded mt-3 mb-3 p-1">
-     		<p>Vous avez <?=  $resultsContactNumber; ?> messages non lus et traités :</p>
+      <div class="contactadmintitle text-center mt-3 mb-3 p-1">
+     		<strong>Vous avez <?=  $resultsContactNumber; ?> messages non lus et traités :</strong>
       </div>
       	<?php
 			foreach ($resultsContact as $data)

@@ -124,7 +124,7 @@ class ChapterManager extends DbManager
 	*/
 	public function getChapterLimit()
 	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter ORDER BY dateUpload desc LIMIT 1');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY id desc LIMIT 1');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters = [];
 		foreach ($result as $data) 
@@ -141,7 +141,7 @@ class ChapterManager extends DbManager
 	*/
 	public function getChapterLimit2()
 	{
-		$req = $this->db->query('SELECT id, title, content, dateUpload FROM chapter ORDER BY dateUpload desc LIMIT 1,1');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY id desc LIMIT 1,1');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters2 = [];
 		foreach ($result as $data) 
