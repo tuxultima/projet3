@@ -10,7 +10,7 @@ ob_start();
 foreach ($results as $data)
 {
 ?>
-<?php if ($data->getReported() == true && $data->getModerate() == true) {
+<?php if ($data->getModerate() == true) {
 		?>
 <div class="reported rounded text-black mt-3 mb-3 p-1 bg-danger">
 	

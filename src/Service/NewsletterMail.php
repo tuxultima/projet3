@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 class NewsletterMail {
+    /**
+    * send mail
+    */
     public function sendMail($email, $title, $content)
     {
         $mail = new PHPMailer(true);

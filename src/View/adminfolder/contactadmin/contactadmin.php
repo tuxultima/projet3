@@ -2,6 +2,7 @@
 ob_start();
 ?>
 <?php
+if ($results) {
 foreach ($results as $data)
 {
 ?>
@@ -70,6 +71,10 @@ foreach ($results as $data)
 
 
 <?php
+}
+}
+else {
+	echo "Vous n'avez pas encore de messages dans votre boite de reception";
 }
 
 ?>

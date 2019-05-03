@@ -16,6 +16,12 @@ class ChapterController
 	{
 		$chapteronly = new ChapterManager();
 		$result = $chapteronly->getChapterOnly($chapter);
-		require('src/View/chapter/chapter.php');	
+		if ($result->getTitle() == null) {
+			require('src/View/error/error404.php');
+		}
+		else {
+			require('src/View/chapter/chapter.php');	
+		}
+		
 	}
 }

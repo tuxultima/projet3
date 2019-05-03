@@ -33,6 +33,7 @@ ob_start();
      		<strong>Vous avez <?=  $resultsContactNumber; ?> messages non lus et traités :</strong>
       </div>
       	<?php
+      		if ($resultsContact) {
 			foreach ($resultsContact as $data)
 			{
 			?>
@@ -53,6 +54,10 @@ ob_start();
 				</div>
 				<?php
 			}
+			}
+			}
+			else {
+				echo "Vous n'avez pas de messages non lus et traités dans votre boite de reception";
 			}
 			?>
     </div>

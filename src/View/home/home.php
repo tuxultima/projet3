@@ -34,7 +34,7 @@ ob_start();
 			<p>
 				<?= $data->getContent(); ?>
 			</p>
-			<em>crée le <?= $data->getDateUpload(); ?>
+			<em>crée le <?= substr($data->getDateUpload(), 0,250); ?>
 
 			<div class="text-right "><a  href="chapitre&id=<?= $data->getId(); ?>">Lire le chapitre ...</a></div></em>
 
@@ -58,7 +58,7 @@ ob_start();
 			<p>
 				<?= $data->getContent(); ?>
 			</p>
-			<em>crée le <?= $data->getDateUpload(); ?>
+			<em>crée le <?= substr($data->getDateUpload(), 0,250); ?>
 
 			<div class="text-right "><a  href="chapitre&id=<?= $data->getId(); ?>">Lire le chapitre ...</a></div></em>
       </div>

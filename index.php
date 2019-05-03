@@ -34,6 +34,7 @@ use App\Controller\AddContact\AddContactController;
 use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
 use App\Controller\AdminFolder\ProcessedContact\ProcessedContactController;
 use App\Controller\TryConnection\ResetPasswordController;
+use App\Controller\Error\Error404Controller;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -77,6 +78,10 @@ elseif ($url === 'chapitre') {
 	$thechapter = new ChapterController();
 	$thechapter->thechapter($chapter);
 	}
+	else {
+	$error = new Error404Controller();
+	$error->error404();
+	}
 }
 
 elseif ($url === 'report') {
@@ -84,6 +89,10 @@ elseif ($url === 'report') {
 	$reported = new Comment(['id'=>$_GET['id']]);
 	$report = new ReportController();
 	$report->report($reported, $_GET['chapter-id']);
+	}
+	else {
+	$error = new Error404Controller();
+	$error->error404();
 	}
 }
 
@@ -420,5 +429,8 @@ elseif ($url === 'processedcontact') {
 	else {
 		header('Location: connexion');
 	}
+} else {
+	$error = new Error404Controller();
+	$error->error404();
 }
 

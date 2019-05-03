@@ -8,10 +8,16 @@ use App\Service\ResetPasswordMail;
 
 class ResetPasswordController
 {
+	/**
+  	* render the newpassword page
+  	*/
 	public function changePasswordMailForm() {
 		require ('src/View/newpassword/newpassword.php');
 	}
 
+	/**
+  	* set token and send mail
+  	*/
 	public function changePasswordMail(User $user) {
 		$userManager = new UserManager;
 		$getUser = $userManager->getEmailAccount($user);
@@ -31,6 +37,9 @@ class ResetPasswordController
 		}
 	}
 
+	/**
+  	* compare token and render the changepasswordform page
+  	*/
 	public function changePasswordForm($token) {
 		$userManager = new UserManager;
 		$user = $userManager->getTokenAccount($token);
@@ -45,6 +54,9 @@ class ResetPasswordController
 		require ('src/View/adminfolder/changepasswordform/changepasswordform.php');
 	}
 
+	/**
+  	* compare token and update password admin account
+  	*/
 	public function updatePassword(User $user) {
 		$userManager = new UserManager;
 		$checkUser = $userManager->getTokenAccount($user);
