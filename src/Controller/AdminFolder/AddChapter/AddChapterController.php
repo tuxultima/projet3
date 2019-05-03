@@ -13,7 +13,7 @@ use App\Service\NewsletterMail;
 class AddChapterController
 {
 	/**
-	* add new chapter in database
+	* add new chapter in database and send mail
 	*/
 	public function addchapter($title, $content)
 	{

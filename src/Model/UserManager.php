@@ -56,15 +56,22 @@ class UserManager extends DbManager
 		return $user;
 	}
 
+	/**
+  	* update password admin account
+  	*/
 	public function updatingPassword(User $user)
 	{
-		$req = $this->db->prepare('UPDATE user SET password = :password WHERE id = :id');
+		$req = $this->db->prepare('UPDATE user SET password = :password, password_token = null, tokenAddDate = null WHERE password_token = :password_token');
 		$upp = $req->execute(array(
-			'password'=>$user->getpassword(),
+			'password'=>$user->getPassword(),
+			'password_token'=>$user->getPasswordToken()
 		));
 		return $upp;
 	}
 
+	/**
+  	* get account by email
+  	*/
 	public function getEmailAccount(User $user)
 	{
 		$req = $this->db->prepare('SELECT id, email FROM user WHERE email = :email');
@@ -78,6 +85,9 @@ class UserManager extends DbManager
 		return $userCheck;
 	}
 
+	/**
+  	* add token admin account
+  	*/
 	public function addToken(User $user)
 	{
 		$req = $this->db->prepare('UPDATE user SET password_token = :password_token, tokenAddDate = NOW() WHERE id = :id');
@@ -88,6 +98,9 @@ class UserManager extends DbManager
 		return $upp;
 	}
 
+	/**
+  	* get account by token
+  	*/
 	public function getTokenAccount(User $user)
 	{
 		$req = $this->db->prepare('SELECT id, nickname, password, email, password_token, tokenAddDate FROM user WHERE password_token = ?');

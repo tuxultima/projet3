@@ -22,6 +22,9 @@ class TryConnectionController
 				$_SESSION['nickname'] = $check['nickname'];
 				header('Location: administration');
 			}
+			else {
+			header('Location: connexion');
+		}
 		}
 		else {
 			header('Location: connexion');

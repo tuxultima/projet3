@@ -55,7 +55,7 @@ ob_start();
 		<?php 
 		if ($data->getReported() == false) {
 			?>
-			<em class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir signaler ce commentaire ?')">report</a></em></p>
+			<em class="float-right"> <a href="report&id=<?= $data->getId(); ?>&chapter-id=<?= $result->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir signaler ce commentaire ?')">Signaler</a></em></p>
 			<?php
 		}
 		 ?>
@@ -65,8 +65,8 @@ ob_start();
 			else {
 				?>
 				<div class="comment rounded text-white mt-4 mb-4 p-1 border border-info">
-					<p> <?= $data->getNickname(); ?></p>
-					<em class="text-white">ce commentaire a etait censuré</em>
+					<p> Pseudo supprimé </p>
+					<em class="text-white">Ce commentaire est jugé inaproprié et a été modéré</em>
 				</div>
 				<?php
 		}

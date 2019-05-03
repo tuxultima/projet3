@@ -2,6 +2,7 @@
 ob_start();
 ?>
 <?php
+if ($results) {
 foreach ($results as $data)
 {
 ?>
@@ -20,8 +21,19 @@ foreach ($results as $data)
 		
 		<p><?= $data->getMessage(); ?></p>
 		
-
-		<p><?= $data->getBoolnews(); ?><a class="float-right" href="processedcontact&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir mettre ce message en lu et traité ?')">lu et traité</a></p>
+		<?php
+		if ($data->getBoolnews() == true) {
+			?>
+			<p>Cette utilisateur souhaite se désinscrire de la newsletter.<a class="float-right" href="processedcontact&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir mettre ce message en lu et traité ?')">lu et traité</a></p>
+		<?php
+		}
+		else {
+			?>
+			<p>Cette utilisateur est pas inscrit ou ne souhaite pas de désinscrire de la newsletter.<a class="float-right" href="processedcontact&id=<?= $data->getId(); ?>" onclick="return confirm('Etes vous sûr de vouloir mettre ce message en lu et traité ?')">lu et traité</a></p>
+		<?php
+		}
+		?>
+		
 	</div>
 	<?php
 	} 
@@ -39,6 +51,19 @@ foreach ($results as $data)
 
 			
 			<p><?= $data->getMessage(); ?></p>
+
+			<?php
+		if ($data->getBoolnews() == true) {
+			?>
+			<p>Cette utilisateur souhaite se désinscrire de la newsletter.</p>
+		<?php
+		}
+		else {
+			?>
+			<p>Cette utilisateur est pas inscrit ou ne souhaite pas de désinscrire de la newsletter.</p>
+		<?php
+		}
+		?>
 		</div>
 	<?php
 	}
@@ -46,6 +71,10 @@ foreach ($results as $data)
 
 
 <?php
+}
+}
+else {
+	echo "Vous n'avez pas encore de messages dans votre boite de reception";
 }
 
 ?>

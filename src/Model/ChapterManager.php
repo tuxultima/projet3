@@ -49,7 +49,7 @@ class ChapterManager extends DbManager
 	*/
 	public function getChapters()
 	{
-		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY dateUpload');
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY id desc ');
 		$results = $req->fetchAll(PDO::FETCH_ASSOC);
 		$chapters = [];
 		foreach ($results as $data) 
@@ -115,5 +115,40 @@ class ChapterManager extends DbManager
 		$req = $this->db->prepare('DELETE FROM chapter WHERE id = :id');
 		$delete = $req->execute(['id'=>$chapter->getId()]);
 		return $delete;
+	}
+
+
+	/**
+	* get chapters order by dateUpload with limit of 1 chapter
+	* @return Chapters
+	*/
+	public function getChapterLimit()
+	{
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY id desc LIMIT 1');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$chapters = [];
+		foreach ($result as $data) 
+		{
+			$objChapters = new Chapter($data);
+			$chapters[] = $objChapters;
+		}
+		return $chapters;
+	}
+
+	/**
+	* get chapters order by dateUpload with limit of 1 chapter
+	* @return Chapters2
+	*/
+	public function getChapterLimit2()
+	{
+		$req = $this->db->query('SELECT id, title, content, DATE_FORMAT(dateUpload, "%d/%m/%Y") AS dateUpload FROM chapter ORDER BY id desc LIMIT 1,1');
+		$result = $req->fetchAll(PDO::FETCH_ASSOC);
+		$chapters2 = [];
+		foreach ($result as $data) 
+		{
+			$objChapters = new Chapter($data);
+			$chapters2[] = $objChapters;
+		}
+		return $chapters2;
 	}
 }

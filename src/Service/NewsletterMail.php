@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 class NewsletterMail {
+    /**
+    * send mail
+    */
     public function sendMail($email, $title, $content)
     {
         $mail = new PHPMailer(true);
@@ -39,9 +42,13 @@ class NewsletterMail {
             
             $mail->isHTML(true);
             $mail->Subject = 'Un nouveau chapitre est sorti';
-            $mail->Body    = '<h2>  ' . $title . '  </h2> <br>
+            $mail->Body    = '
+            <h2 style="text-align: center;" >  ' . $title . '  </h2> <br>
+            <a href="http://localhost/projet3/roman">Lire la suite ...</a>
             <br>
-            <p>  '  . substr($content, 0,250);  '  </p>';
+            <p>  '  . substr($content, 0,250);   '  </p>
+            
+            ';
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

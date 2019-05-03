@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 class ContactMail {
+    /**
+    * send mail
+    */
     public function sendMail($email, $sujet, $message, $boolnews)
     {
         $mail = new PHPMailer(true);

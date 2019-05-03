@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 class ResetPasswordMail {
+    /**
+    * send mail
+    */
     public function sendResetMail($token)
     {
         $mail = new PHPMailer(true);

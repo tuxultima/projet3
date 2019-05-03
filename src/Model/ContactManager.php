@@ -36,7 +36,7 @@ class ContactManager extends DbManager
 	*/
 	public function getContacts()
 	{
-		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact ORDER BY id');
+		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact ORDER BY id DESC');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		if ($result) {
 			
@@ -64,12 +64,12 @@ class ContactManager extends DbManager
 	}
 
 	/**
-	* get all contact get by id order by id with limit of 3 contacts
+	* get contact order by id with limit of 3 contacts
 	* @return Contact
 	*/
 	public function getContactsLimit()
 	{
-		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact WHERE processed = 0 ORDER BY id LIMIT 0,3');
+		$req = $this->db->query('SELECT id, email ,sujet, message, boolnews, rgpd, processed FROM contact WHERE processed = 0 ORDER BY id DESC LIMIT 0,3');
 		$result = $req->fetchAll(PDO::FETCH_ASSOC);
 		if ($result) {
 			
@@ -85,9 +85,13 @@ class ContactManager extends DbManager
 		return false;
 	}
 
+	/**
+	* get number of contact where processed = 0
+	* @return result
+	*/
 	public function getContactNumber()
 	{
-		$req = $this->db->query('SELECT COUNT(processed = 0) AS newMsj FROM contact');
+		$req = $this->db->query('SELECT COUNT(*) FROM contact WHERE processed = 0');
 		$result = $req->fetchColumn();
 
 		return $result;

@@ -34,6 +34,7 @@ use App\Controller\AddContact\AddContactController;
 use App\Controller\AdminFolder\ContactAdmin\ContactAdminController;
 use App\Controller\AdminFolder\ProcessedContact\ProcessedContactController;
 use App\Controller\TryConnection\ResetPasswordController;
+use App\Controller\Error\Error404Controller;
 use App\Model\User;
 use App\Model\Chapter;
 use App\Model\Comment;
@@ -77,6 +78,10 @@ elseif ($url === 'chapitre') {
 	$thechapter = new ChapterController();
 	$thechapter->thechapter($chapter);
 	}
+	else {
+	$error = new Error404Controller();
+	$error->error404();
+	}
 }
 
 elseif ($url === 'report') {
@@ -84,6 +89,10 @@ elseif ($url === 'report') {
 	$reported = new Comment(['id'=>$_GET['id']]);
 	$report = new ReportController();
 	$report->report($reported, $_GET['chapter-id']);
+	}
+	else {
+	$error = new Error404Controller();
+	$error->error404();
 	}
 }
 
@@ -98,6 +107,9 @@ elseif ($url === 'tryconnection') {
 		$tryconnection = new TryConnectionController();
 		$tryconnection->tryconnection($user);
 	}
+	else {
+				header('Location: connexion');
+			}
 }
 
 elseif ($url === 'mot-de-passe-oublie') {
@@ -117,8 +129,13 @@ elseif ($url === 'forgot-password-mail') {
 				header('Location: connexion');
 			}
 		}
+		else {
+				header('Location: connexion');
+			}
 	}
-	
+	else {
+				header('Location: connexion');
+			}
 }
 
 elseif ($url === 'changement-mdp') {
@@ -127,11 +144,41 @@ elseif ($url === 'changement-mdp') {
 	$password = new ResetPasswordController();
 	$password->changePasswordForm($tokenUser);
 	}
+	else {
+				header('Location: connexion');
+			}
 }
 
-elseif ($url === 'update-password') {
-	$password = new ResetPasswordController();
-	$password->updatePassword();
+elseif ($url === 'updatepassword') {
+	var_dump("0");
+	if ( preg_match ( "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" , $_POST['password'] ) &&  preg_match ( "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/" , $_POST['password2'] ) ) {
+		var_dump("1");
+		if (isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['token'])) {
+			var_dump("2");
+			if (!empty($_POST['password']) && !empty($_POST['password2']) && !empty($_POST['token'])) {
+				var_dump("3");
+				if ($_POST['password'] == $_POST['password2']) {
+					var_dump("4");
+					$user = new User(['password'=>$_POST['password'], 'password_token'=>$_POST['token']]);
+					
+					$changing = new ResetPasswordController();
+					$changing->updatePassword($user);
+				}
+				else {
+				header('Location: connexion');
+			}
+			}
+			else {
+				header('Location: connexion');
+			}
+		}
+		else {
+				header('Location: connexion');
+			}
+	}
+	else {
+				header('Location: connexion');
+			}	
 }
 
 elseif ($url === 'administration') {
@@ -331,7 +378,13 @@ elseif ($url === 'addnewsletter') {
 				header('Location: newsletters');
 			}
 		}
-	}	
+		else {
+				header('Location: newsletters');
+			}
+	}
+	else {
+				header('Location: newsletters');
+			}	
 }
 
 elseif ($url === 'addcontact') {
@@ -341,11 +394,17 @@ elseif ($url === 'addcontact') {
 				$addcontact = new AddContactController();
 				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews'] ,$_POST['rgpd']);
 				}
+				else {
+				header('Location: contact');
+				}
 			}
 			else {
 				header('Location: contact');
 			}
 		}
+		else {
+				header('Location: contact');
+			}
 }
 
 elseif ($url === 'contactadmin') {
@@ -370,23 +429,8 @@ elseif ($url === 'processedcontact') {
 	else {
 		header('Location: connexion');
 	}
-}
-
-elseif ($url === 'updatepassword') {
-	if ( preg_match ( " /^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/ " , $_POST['password'], $_POST['password2'] ) ) {
-		if (isset($_POST['password']) && isset($_POST['password2'])) {
-			if (!empty($_POST['password']) && !empty($_POST['password2'])) {
-				if ($_POST['password'] == $_POST['password2']) {
-					$password = $_POST['password'];
-					$token = $_GET['token'];
-					$changing = new ResetPasswordController();
-					$changing->updatePassword($password);
-				}
-			}
-			else {
-				header('Location: connexion');
-			}
-		}
-	}	
+} else {
+	$error = new Error404Controller();
+	$error->error404();
 }
 
