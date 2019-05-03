@@ -1,4 +1,5 @@
-"# projet3" 
+"# projet3"
+Projet d'étude chef de projet multimédia spécialité developpement web
 ## Conception
 Ce site a été concu pour Jean Forteroche, écrivain.
 Il sagit d'un blog coder en HTML5, CSS3, Bootstrap4, PHP7 et MYSQL.
@@ -7,6 +8,12 @@ Pour la rédaction des chapitre le site utilise TinyMCE(lien de leurs github : h
 Le lien github pour cloner le projet : https://github.com/tuxultima/projet3 .
 L'utilisation de composer est recommander pour télécharger PHPmailer et TinyMCE (https://getcomposer.org).
 Coter front le site utilise Bootstrap 4(https://getbootstrap.com/).
+
+Une fois le projet télécharger : 
+```
+composer install
+```
+
 
 ## Table SQL
 
