@@ -2,7 +2,6 @@
 ob_start();
 ?>
 
-<!--<h1 class="text-white">Accueil</h1>-->
 
 
 <div>

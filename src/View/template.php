@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../../projet3/public/css/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="../../projet3/public/css/other.css">
-	<title>projet 3</title>
+	<title>Billet simple pour l'Alaska</title>
 </head>
 <body class="darkmode">
 	<div class="container">

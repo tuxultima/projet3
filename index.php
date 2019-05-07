@@ -247,6 +247,10 @@ elseif ($url === 'censor') {
 			$censor = new CensorController();
 			$censor->censor($censored);
 		}
+		else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
@@ -261,6 +265,10 @@ elseif ($url === 'agree') {
 			$agree = new AgreeController();
 			$agree->agree($agreed);
 		}
+		else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
@@ -274,8 +282,15 @@ elseif ($url === 'addchapter') {
 				$addchapter = new AddChapterController();
 				$addchapter->addchapter($_POST['title'], $_POST['content']);
 			}
+			else {
+				$error = new Error404Controller();
+				$error->error404();
+				}
 		}
-			
+		else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
@@ -300,6 +315,10 @@ elseif ($url === 'updatechapitre') {
 			$updatechapter = new UpdateChapterController();
 			$updatechapter->updatechapter($updatechaptersure);
 		}
+		else {
+		$error = new Error404Controller();
+		$error->error404();
+		}
 	}
 	else {
 		header('Location: connexion');
@@ -314,6 +333,10 @@ elseif ($url === 'deletechapitre') {
 			$deletechapter = new DeleteChapterController();
 			$deletechapter->deleteChapter($deletechaptersure);
 		}
+		else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
@@ -328,10 +351,14 @@ elseif ($url === 'updatethechapter') {
 			$update = new UpdateTheChapterController();
 			$update->updatethechapter($_POST['id'], $_POST['title'], $_POST['content']);
 			}
-	}
-	else {
-		header('Location: connexion');
-	}
+			else {
+				$error = new Error404Controller();
+				$error->error404();
+				}
+		}
+		else {
+			header('Location: connexion');
+		}
 }
 
 elseif ($url === 'addcomment') {
@@ -340,7 +367,15 @@ elseif ($url === 'addcomment') {
 				$addcomment = new AddCommentController();
 				$addcomment->addcomment($_POST['nickname'], $_POST['comment'], $_POST['chapter_id']);
 			}
+			else {
+				$error = new Error404Controller();
+				$error->error404();
+				}
 		}
+		else {
+				$error = new Error404Controller();
+				$error->error404();
+				}
 }
 
 elseif ($url === 'newsletteradmin') {
@@ -361,6 +396,10 @@ elseif ($url === 'deletenewsletter') {
 			$deletenewsletter = new DeleteNewsletterController();
 			$deletenewsletter->deleteNewsletter($deletenewslettersure);
 		}
+			else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
@@ -374,12 +413,14 @@ elseif ($url === 'addnewsletter') {
 				$addnewsletter = new AddNewsletterController();
 				$addnewsletter->addnewsletter($_POST['email'], $_POST['rgpd']);
 			}
-			else {
-				header('Location: newsletters');
-			}
+				else {
+					$error = new Error404Controller();
+					$error->error404();
+					}
 		}
 		else {
-				header('Location: newsletters');
+			$error = new Error404Controller();
+			$error->error404();
 			}
 	}
 	else {
@@ -395,12 +436,14 @@ elseif ($url === 'addcontact') {
 				$addcontact->addcontact($_POST['email'], $_POST['sujet'], $_POST['message'], $_POST['boolnews'] ,$_POST['rgpd']);
 				}
 				else {
-				header('Location: contact');
-				}
+					$error = new Error404Controller();
+					$error->error404();
+					}
 			}
 			else {
-				header('Location: contact');
-			}
+				$error = new Error404Controller();
+				$error->error404();
+				}
 		}
 		else {
 				header('Location: contact');
@@ -425,6 +468,10 @@ elseif ($url === 'processedcontact') {
 			$processedcontact = new ProcessedContactController();
 			$processedcontact->processedContact($processedcontactsure);
 		}
+			else {
+			$error = new Error404Controller();
+			$error->error404();
+			}
 	}
 	else {
 		header('Location: connexion');
