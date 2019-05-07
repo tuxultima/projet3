@@ -4,6 +4,7 @@ ob_start();
 
 
 <div class="passwordformfront rounded mt-3 mb-3 border border-info">
+	<p>Le mot de passe doit contenir obligatoirement une majuscule et un chiffre.</p>
  <form action="updatepassword" class="m-2" method="post">	
     <div class="form-group">
     	<input type='hidden' name='token' value='<?= $user->getPasswordToken(); ?>' />
